@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageCircle, Menu, X, Compass, Calendar, ArrowLeft } from 'lucide-react';
+import { MessageCircle, Menu, X, Compass, Calendar, ArrowLeft, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 // Imports de logos
@@ -26,6 +26,7 @@ export default function Header({ sucursal }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
 
+          {/* Logo + Volver */}
           <div className="flex items-center gap-3">
             <Link
               to="/"
@@ -60,6 +61,7 @@ export default function Header({ sucursal }) {
             </a>
           </div>
 
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
             <a href="#paseos" className={`hover:${colores.textPrimario} transition-colors flex items-center gap-1.5`}>
               <Compass className={`w-4 h-4 ${colores.textPrimario}`} />
@@ -77,7 +79,19 @@ export default function Header({ sucursal }) {
             </a>
           </nav>
 
-          <div className="hidden md:flex items-center">
+          {/* CTA Buttons - Instagram + WhatsApp */}
+          <div className="hidden md:flex items-center gap-3">
+            <a
+              href={sucursal.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white font-semibold rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all text-sm`}
+              aria-label="Instagram"
+            >
+              <Instagram className="w-4 h-4" />
+              <span>Instagram</span>
+            </a>
+
             <a
               href={whatsappUrl}
               target="_blank"
@@ -85,10 +99,11 @@ export default function Header({ sucursal }) {
               className={`inline-flex items-center gap-2 px-5 py-2.5 ${colores.bgSecundario} ${colores.bgSecundarioHover} text-white font-semibold rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all text-sm`}
             >
               <MessageCircle className="w-4 h-4 fill-current" />
-              <span>WhatsApp Directo</span>
+              <span>WhatsApp</span>
             </a>
           </div>
 
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors"
@@ -99,6 +114,7 @@ export default function Header({ sucursal }) {
         </div>
       </div>
 
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-6 space-y-3 animate-fade-in">
           <Link
@@ -138,15 +154,28 @@ export default function Header({ sucursal }) {
           >
             Consultar Disponibilidad
           </a>
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`w-full mt-2 flex items-center justify-center gap-2 px-5 py-3 ${colores.bgSecundario} text-white font-bold rounded-xl shadow-md text-sm`}
-          >
-            <MessageCircle className="w-5 h-5 fill-current" />
-            Contactar por WhatsApp
-          </a>
+
+          {/* Instagram + WhatsApp mobile */}
+          <div className="flex gap-2 pt-2">
+            <a
+              href={sucursal.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white font-bold rounded-xl shadow-md text-sm"
+            >
+              <Instagram className="w-4 h-4" />
+              Instagram
+            </a>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 ${colores.bgSecundario} text-white font-bold rounded-xl shadow-md text-sm`}
+            >
+              <MessageCircle className="w-4 h-4 fill-current" />
+              WhatsApp
+            </a>
+          </div>
         </div>
       )}
     </header>
