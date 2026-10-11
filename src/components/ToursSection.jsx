@@ -1,19 +1,33 @@
-import React, { useState } from 'react';
-import { MessageCircle, Check, Info, Sparkles, MapPin } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { MessageCircle, Check, Info, Sparkles, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 
-// Imports de imágenes - Floripa
+// Imports de imágenes - Floripa (una sola foto por tour)
 import floripaCatamaran from '../assets/excursiones/floripa-catamaran.jpg';
 import floripaBarco from '../assets/excursiones/floripa-barco.jpg';
 import floripaCampeche from '../assets/excursiones/floripa-campeche.jpg';
 import floripaFrances from '../assets/excursiones/floripa-frances.jpg';
 import floripaPirata from '../assets/excursiones/floripa-pirata.jpg';
 
-// Imports de imágenes - Galinhas
-import galinhasMaragogi from '../assets/excursiones/galinhas-maragogi.jpg';
-import galinhasCarneiros from '../assets/excursiones/galinhas-carneiros.jpg';
-import galinhasSantoAleixo from '../assets/excursiones/galinhas-santo-aleixo.jpg';
-import galinhasBuggy from '../assets/excursiones/galinhas-buggy.jpg';
-import galinhasSnorkel from '../assets/excursiones/galinhas-snorkel.jpg';
+// Imports de imágenes - Galinhas (múltiples fotos por tour)
+import galinhasMaragogi1 from '../assets/excursiones/galinhas-maragogi-1.jpg';
+import galinhasMaragogi2 from '../assets/excursiones/galinhas-maragogi-2.jpg';
+import galinhasMaragogi3 from '../assets/excursiones/galinhas-maragogi-3.jpg';
+
+import galinhasCarneiros1 from '../assets/excursiones/galinhas-carneiros-1.jpg';
+import galinhasCarneiros2 from '../assets/excursiones/galinhas-carneiros-2.jpg';
+import galinhasCarneiros3 from '../assets/excursiones/galinhas-carneiros-3.jpg';
+
+import galinhasSantoAleixo1 from '../assets/excursiones/galinhas-santo-aleixo-1.jpg';
+import galinhasSantoAleixo2 from '../assets/excursiones/galinhas-santo-aleixo-2.jpg';
+import galinhasSantoAleixo3 from '../assets/excursiones/galinhas-santo-aleixo-3.jpg';
+
+import galinhasBuggy1 from '../assets/excursiones/galinhas-buggy-1.jpg';
+import galinhasBuggy2 from '../assets/excursiones/galinhas-buggy-2.jpg';
+import galinhasBuggy3 from '../assets/excursiones/galinhas-buggy-3.jpg';
+
+import galinhasSnorkel1 from '../assets/excursiones/galinhas-snorkel-1.jpg';
+import galinhasSnorkel2 from '../assets/excursiones/galinhas-snorkel-2.jpg';
+import galinhasSnorkel3 from '../assets/excursiones/galinhas-snorkel-3.jpg';
 
 export default function ToursSection({ sucursal, onOpenWhatsApp }) {
   const [selectedModalTour, setSelectedModalTour] = useState(null);
@@ -26,7 +40,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
         title: 'Paseo en Catamarán',
         badge: 'Paseo Principal ⭐',
         isFeatured: true,
-        image: floripaCatamaran,
+        images: [floripaCatamaran],
         fallbackImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80',
         description: 'TODO INCLUIDO. Caipirinha de cortesía, frutas libres, trilha hasta una cascada escondida, almuerzo buffet libre y navegación hasta una playa privada con banana boat, kayak, trampolín, stand up paddle y snorkel.',
         duration: 'Día completo',
@@ -44,7 +58,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
         title: 'Paseo en Barco',
         badge: 'Clásico Imperdible 🚤',
         isFeatured: true,
-        image: floripaBarco,
+        images: [floripaBarco],
         fallbackImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
         description: 'Almuerzo libre, 1 hora de caipirinha FREE, snorkel, animador a bordo, música durante todo el paseo, dos toboganes de 4 metros, kayak, piscina flotante, stand up paddle, flotadores, bar a bordo y Wi-Fi.',
         duration: '5 horas',
@@ -65,7 +79,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
         title: 'Isla de Campeche',
         badge: 'Paraíso Natural 🏖️',
         isFeatured: false,
-        image: floripaCampeche,
+        images: [floripaCampeche],
         fallbackImage: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80',
         description: 'Reserva natural con acceso controlado de 800 visitantes por día. Aguas cristalinas, arena blanca y naturaleza preservada. Caipirinha libre y agua durante la navegación.',
         duration: 'Día completo',
@@ -82,7 +96,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
         title: 'Isla de Francés Plus',
         badge: 'Relax & Naturaleza 🌴',
         isFeatured: false,
-        image: floripaFrances,
+        images: [floripaFrances],
         fallbackImage: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=80',
         description: 'Navegá en una goleta cómoda y exclusiva con recorrido panorámico por las playas del norte de Floripa, con parada para nadar en las aguas cristalinas de Isla do Francés.',
         duration: '6 horas',
@@ -100,7 +114,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
         title: 'Barco Pirata',
         badge: 'Aventura Familiar 🏴‍☠️',
         isFeatured: false,
-        image: floripaPirata,
+        images: [floripaPirata],
         fallbackImage: 'https://images.unsplash.com/photo-1476514525535-ce74f45814e0?auto=format&fit=crop&w=800&q=80',
         description: 'Navegá por el norte de Florianópolis descubriendo playas paradisíacas, fortalezas históricas y paisajes increíbles. 3 opciones de paseo con diferentes duraciones.',
         duration: '3 opciones',
@@ -119,7 +133,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
         title: 'Maragogi',
         badge: 'Paraíso Caribeño ⭐',
         isFeatured: true,
-        image: galinhasMaragogi,
+        images: [galinhasMaragogi1, galinhasMaragogi2, galinhasMaragogi3].filter(Boolean),
         fallbackImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
         description: 'Descubrí el famoso "Caribe Brasileño" y sus aguas cristalinas. Paseo en catamarán por las piscinas naturales y el Camino de Moisés.',
         duration: 'Día completo',
@@ -136,7 +150,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
         title: 'Playa de Carneiros',
         badge: 'La más bella 🏖️',
         isFeatured: true,
-        image: galinhasCarneiros,
+        images: [galinhasCarneiros1, galinhasCarneiros2, galinhasCarneiros3].filter(Boolean),
         fallbackImage: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80',
         description: 'Una de las playas más lindas de Pernambuco, con aguas cristalinas y paisajes increíbles. Paseo en catamarán visitando la Capilla de San Benito, bancos de arena, baño de arcilla y piscinas naturales.',
         duration: 'Día completo (08 a 15 hs)',
@@ -154,7 +168,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
         title: 'Ilha de Santo Aleixo',
         badge: 'Isla Paradisíaca 🌴',
         isFeatured: false,
-        image: galinhasSantoAleixo,
+        images: [galinhasSantoAleixo1, galinhasSantoAleixo2, galinhasSantoAleixo3].filter(Boolean),
         fallbackImage: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80',
         description: 'Un paraíso de piscinas naturales, playas tranquilas y paisajes de origen volcánico. Travesía en lancha + ruta ecológica guiada.',
         duration: 'Día completo (08 a 15 hs)',
@@ -171,7 +185,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
         title: 'Paseo en Buggy',
         badge: 'Aventura 4x4 🏎️',
         isFeatured: false,
-        image: galinhasBuggy,
+        images: [galinhasBuggy1, galinhasBuggy2, galinhasBuggy3].filter(Boolean),
         fallbackImage: 'https://images.unsplash.com/photo-1476514525535-ce74f45814e0?auto=format&fit=crop&w=800&q=80',
         description: 'Recorré Porto de Galinhas de punta a punta: Muro Alto, Cupé, Porto de Galinhas, Maracaípe y Pontal de Maracaípe.',
         duration: '2, 4, 6 u 8 horas',
@@ -190,7 +204,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
         title: 'Buceo o Snorkel en las Piscinas Naturales',
         badge: 'Mundo Submarino 🐠',
         isFeatured: false,
-        image: galinhasSnorkel,
+        images: [galinhasSnorkel1, galinhasSnorkel2, galinhasSnorkel3].filter(Boolean),
         fallbackImage: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80',
         description: 'Viví una experiencia única dentro de las aguas cristalinas de Porto de Galinhas. Paseo en jangada hasta las piscinas naturales + snorkel entre peces.',
         duration: '50 minutos',
@@ -229,6 +243,12 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
 
   const t = textos[sucursal.id] || textos.floripa;
 
+  const getWhatsAppTourLink = (tourName) => {
+    const destino = sucursal.id === 'floripa' ? 'Florianópolis' : 'Porto de Galinhas';
+    const text = `¡Hola ${sucursal.nombre}! Quiero consultar por la excursión: ${tourName} en ${destino}. ¿Me brindas más información y disponibilidad?`;
+    return `https://wa.me/${sucursal.whatsapp}?text=${encodeURIComponent(text)}`;
+  };
+
   return (
     <section id="paseos" className="py-20 bg-gray-50/80 relative scroll-mt-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -247,85 +267,14 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {tours.map((tour) => (
-            <div
+            <TourCard
               key={tour.id}
-              className={`bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col border ${
-                tour.isFeatured ? `${colores.borderPrimario} ring-2 ${colores.borderPrimario}/20` : 'border-gray-200/80'
-              }`}
-            >
-              <div className="relative h-60 overflow-hidden bg-gray-100 group">
-                <img
-                  src={tour.image}
-                  alt={tour.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  onError={(e) => {
-                    e.target.src = tour.fallbackImage;
-                  }}
-                />
-
-                <div className="absolute top-4 left-4 bg-gray-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-                  {tour.badge}
-                </div>
-
-                {tour.isFeatured && (
-                  <div className={`absolute top-4 right-4 ${colores.bgSecundario} text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1`}>
-                    <Sparkles className="w-3.5 h-3.5" />
-                    Destacado
-                  </div>
-                )}
-              </div>
-
-              <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                <div>
-                  <div className={`flex items-center gap-2 text-xs ${colores.textPrimario} font-semibold mb-2`}>
-                    <MapPin className="w-3.5 h-3.5" />
-                    <span>{t.ubicacion}</span>
-                    <span className="text-gray-300">•</span>
-                    <span>{tour.duration}</span>
-                  </div>
-
-                  <h3 className="text-xl font-black text-gray-900 leading-snug hover:text-gray-700 transition-colors">
-                    {tour.title}
-                  </h3>
-
-                  <p className="text-gray-600 text-sm mt-2 line-clamp-3 leading-relaxed">
-                    {tour.description}
-                  </p>
-
-                  <div className="mt-4 pt-4 border-t border-gray-100 space-y-2">
-                    {tour.highlights.slice(0, 3).map((highlight, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-xs text-gray-700 font-medium">
-                        <Check className={`w-4 h-4 ${colores.textSecundario} shrink-0 mt-0.5`} />
-                        <span>{highlight}</span>
-                      </div>
-                    ))}
-                    {tour.highlights.length > 3 && (
-                      <p className={`text-xs ${colores.textPrimario} font-bold pt-1`}>
-                        +{tour.highlights.length - 3} beneficios más...
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                <div className="pt-2 flex items-center gap-2">
-                  <button
-                    onClick={() => setSelectedModalTour(tour)}
-                    className={`flex-1 px-4 py-3 ${colores.bgSuave} ${colores.textPrimarioOscuro} font-bold rounded-xl text-xs sm:text-sm transition-colors flex items-center justify-center gap-1.5`}
-                  >
-                    <Info className="w-4 h-4" />
-                    <span>Info & Fotos</span>
-                  </button>
-
-                  <button
-                    onClick={() => onOpenWhatsApp(tour.title)}
-                    className={`flex-1 px-4 py-3 ${colores.bgSecundario} ${colores.bgSecundarioHover} text-white font-bold rounded-xl text-xs sm:text-sm transition-colors shadow-sm flex items-center justify-center gap-1.5`}
-                  >
-                    <MessageCircle className="w-4 h-4 fill-current" />
-                    <span>Consultar</span>
-                  </button>
-                </div>
-              </div>
-            </div>
+              tour={tour}
+              colores={colores}
+              t={t}
+              onOpenModal={() => setSelectedModalTour(tour)}
+              onOpenWhatsApp={onOpenWhatsApp}
+            />
           ))}
 
           <div className={`bg-gradient-to-br ${colores.gradienteHero} rounded-3xl overflow-hidden shadow-md flex flex-col items-center justify-center p-8 text-white text-center min-h-[400px]`}>
@@ -349,61 +298,320 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
 
       </div>
 
+      {/* Modal de Tour con carrusel manual */}
       {selectedModalTour && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative border border-gray-100 max-h-[90vh] flex flex-col">
-            <div className="relative h-64 shrink-0">
-              <img
-                src={selectedModalTour.image}
-                alt={selectedModalTour.title}
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.target.src = selectedModalTour.fallbackImage;
-                }}
-              />
-              <button
-                onClick={() => setSelectedModalTour(null)}
-                className="absolute top-4 right-4 bg-black/60 hover:bg-black text-white w-9 h-9 rounded-full flex items-center justify-center font-bold text-lg"
-              >
-                ✕
-              </button>
-              <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-900">
-                {selectedModalTour.badge}
-              </div>
-            </div>
-
-            <div className="p-6 space-y-4 overflow-y-auto">
-              <h3 className="text-2xl font-black text-gray-900">{selectedModalTour.title}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{selectedModalTour.description}</p>
-
-              <div className={`${colores.bgSuave} rounded-2xl p-4 space-y-2 border ${colores.borderPrimario}/20`}>
-                <p className={`text-xs font-bold ${colores.textPrimarioOscuro} uppercase tracking-wide`}>Incluye en este paseo:</p>
-                <div className="grid grid-cols-1 gap-1.5 text-xs text-gray-700 font-medium">
-                  {selectedModalTour.highlights.map((h, i) => (
-                    <div key={i} className="flex items-start gap-2">
-                      <Check className={`w-4 h-4 ${colores.textSecundario} shrink-0 mt-0.5`} />
-                      <span>{h}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="pt-2 flex items-center gap-3">
-                <button
-                  onClick={() => {
-                    setSelectedModalTour(null);
-                    onOpenWhatsApp(selectedModalTour.title);
-                  }}
-                  className={`flex-1 py-3.5 ${colores.bgSecundario} ${colores.bgSecundarioHover} text-white font-bold rounded-xl text-center text-sm shadow-md transition-colors flex items-center justify-center gap-2`}
-                >
-                  <MessageCircle className="w-5 h-5 fill-current" />
-                  <span>Reservar este paseo</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <TourModal
+          tour={selectedModalTour}
+          colores={colores}
+          onClose={() => setSelectedModalTour(null)}
+          onOpenWhatsApp={onOpenWhatsApp}
+          getWhatsAppTourLink={getWhatsAppTourLink}
+        />
       )}
     </section>
+  );
+}
+
+// ============================================
+// COMPONENTE DE TARJETA CON CARRUSEL AUTOMÁTICO + FLECHAS
+// ============================================
+function TourCard({ tour, colores, t, onOpenModal, onOpenWhatsApp }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const images = tour.images || [];
+  const hasMultipleImages = images.length > 1;
+
+  // Cambiar de imagen cada 4 segundos (pausado si hay hover)
+  useEffect(() => {
+    if (!hasMultipleImages || isPaused) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [hasMultipleImages, isPaused, images.length]);
+
+  const nextImage = (e) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = (e) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div
+      className={`bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col border ${
+        tour.isFeatured ? `${colores.borderPrimario} ring-2 ${colores.borderPrimario}/20` : 'border-gray-200/80'
+      }`}
+    >
+      {/* Carrusel de imágenes */}
+      <div
+        className="relative h-60 overflow-hidden bg-gray-100 group"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {/* Imágenes apiladas con fade */}
+        {images.map((img, idx) => (
+          <img
+            key={idx}
+            src={img}
+            alt={`${tour.title} - Foto ${idx + 1}`}
+            className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${
+              idx === currentIndex ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
+            } group-hover:scale-110`}
+            onError={(e) => {
+              e.target.src = tour.fallbackImage;
+            }}
+          />
+        ))}
+
+        {/* Badge superior izquierda */}
+        <div className="absolute top-4 left-4 bg-gray-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-10">
+          {tour.badge}
+        </div>
+
+        {/* Badge destacado */}
+        {tour.isFeatured && (
+          <div className={`absolute top-4 right-4 ${colores.bgSecundario} text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1 z-10`}>
+            <Sparkles className="w-3.5 h-3.5" />
+            Destacado
+          </div>
+        )}
+
+        {/* Flechas de navegación - solo si hay múltiples imágenes */}
+        {hasMultipleImages && (
+          <>
+            <button
+              onClick={prevImage}
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white backdrop-blur-md text-gray-900 flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-10"
+              aria-label="Foto anterior"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={nextImage}
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white backdrop-blur-md text-gray-900 flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-10"
+              aria-label="Foto siguiente"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </>
+        )}
+
+        {/* Indicadores (dots) */}
+        {hasMultipleImages && (
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-10">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCurrentIndex(idx);
+                }}
+                className={`rounded-full transition-all duration-300 ${
+                  idx === currentIndex
+                    ? 'w-6 h-2 bg-white'
+                    : 'w-2 h-2 bg-white/50 hover:bg-white/80'
+                }`}
+                aria-label={`Ir a foto ${idx + 1}`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Card Body */}
+      <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+        <div>
+          <div className={`flex items-center gap-2 text-xs ${colores.textPrimario} font-semibold mb-2`}>
+            <MapPin className="w-3.5 h-3.5" />
+            <span>{t.ubicacion}</span>
+            <span className="text-gray-300">•</span>
+            <span>{tour.duration}</span>
+          </div>
+
+          <h3 className="text-xl font-black text-gray-900 leading-snug hover:text-gray-700 transition-colors">
+            {tour.title}
+          </h3>
+
+          <p className="text-gray-600 text-sm mt-2 line-clamp-3 leading-relaxed">
+            {tour.description}
+          </p>
+
+          <div className="mt-4 pt-4 border-t border-gray-100 space-y-2">
+            {tour.highlights.slice(0, 3).map((highlight, idx) => (
+              <div key={idx} className="flex items-start gap-2 text-xs text-gray-700 font-medium">
+                <Check className={`w-4 h-4 ${colores.textSecundario} shrink-0 mt-0.5`} />
+                <span>{highlight}</span>
+              </div>
+            ))}
+            {tour.highlights.length > 3 && (
+              <p className={`text-xs ${colores.textPrimario} font-bold pt-1`}>
+                +{tour.highlights.length - 3} beneficios más...
+              </p>
+            )}
+          </div>
+        </div>
+
+        <div className="pt-2 flex items-center gap-2">
+          <button
+            onClick={onOpenModal}
+            className={`flex-1 px-4 py-3 ${colores.bgSuave} ${colores.textPrimarioOscuro} font-bold rounded-xl text-xs sm:text-sm transition-colors flex items-center justify-center gap-1.5`}
+          >
+            <Info className="w-4 h-4" />
+            <span>Info & Fotos</span>
+          </button>
+
+          <button
+            onClick={() => onOpenWhatsApp(tour.title)}
+            className={`flex-1 px-4 py-3 ${colores.bgSecundario} ${colores.bgSecundarioHover} text-white font-bold rounded-xl text-xs sm:text-sm transition-colors shadow-sm flex items-center justify-center gap-1.5`}
+          >
+            <MessageCircle className="w-4 h-4 fill-current" />
+            <span>Consultar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================
+// MODAL DE TOUR CON CARRUSEL MANUAL (SIN AUTO-PLAY)
+// ============================================
+function TourModal({ tour, colores, onClose, onOpenWhatsApp, getWhatsAppTourLink }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const images = tour.images || [];
+  const hasMultipleImages = images.length > 1;
+
+  const nextImage = () => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative border border-gray-100 max-h-[90vh] flex flex-col"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Carrusel del modal */}
+        <div className="relative h-64 shrink-0 group">
+          {images.map((img, idx) => (
+            <img
+              key={idx}
+              src={img}
+              alt={`${tour.title} - Foto ${idx + 1}`}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                idx === currentIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+              onError={(e) => {
+                e.target.src = tour.fallbackImage;
+              }}
+            />
+          ))}
+
+          {/* Botón cerrar */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 bg-black/60 hover:bg-black text-white w-9 h-9 rounded-full flex items-center justify-center font-bold text-lg z-20"
+            aria-label="Cerrar"
+          >
+            ✕
+          </button>
+
+          {/* Badge */}
+          <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-900 z-10">
+            {tour.badge}
+          </div>
+
+          {/* Flechas de navegación */}
+          {hasMultipleImages && (
+            <>
+              <button
+                onClick={prevImage}
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white backdrop-blur-md text-gray-900 flex items-center justify-center shadow-lg z-10 transition-transform hover:scale-110"
+                aria-label="Foto anterior"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white backdrop-blur-md text-gray-900 flex items-center justify-center shadow-lg z-10 transition-transform hover:scale-110"
+                aria-label="Foto siguiente"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </>
+          )}
+
+          {/* Contador de fotos */}
+          {hasMultipleImages && (
+            <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs font-bold px-2.5 py-1 rounded-full z-10">
+              {currentIndex + 1} / {images.length}
+            </div>
+          )}
+
+          {/* Dots indicadores */}
+          {hasMultipleImages && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-10">
+              {images.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentIndex(idx)}
+                  className={`rounded-full transition-all duration-300 ${
+                    idx === currentIndex
+                      ? 'w-6 h-2 bg-white'
+                      : 'w-2 h-2 bg-white/50 hover:bg-white/80'
+                  }`}
+                  aria-label={`Ir a foto ${idx + 1}`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="p-6 space-y-4 overflow-y-auto">
+          <h3 className="text-2xl font-black text-gray-900">{tour.title}</h3>
+          <p className="text-gray-600 text-sm leading-relaxed">{tour.description}</p>
+
+          <div className={`${colores.bgSuave} rounded-2xl p-4 space-y-2 border ${colores.borderPrimario}/20`}>
+            <p className={`text-xs font-bold ${colores.textPrimarioOscuro} uppercase tracking-wide`}>Incluye en este paseo:</p>
+            <div className="grid grid-cols-1 gap-1.5 text-xs text-gray-700 font-medium">
+              {tour.highlights.map((h, i) => (
+                <div key={i} className="flex items-start gap-2">
+                  <Check className={`w-4 h-4 ${colores.textSecundario} shrink-0 mt-0.5`} />
+                  <span>{h}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="pt-2 flex items-center gap-3">
+            <button
+              onClick={() => {
+                onClose();
+                onOpenWhatsApp(tour.title);
+              }}
+              className={`flex-1 py-3.5 ${colores.bgSecundario} ${colores.bgSecundarioHover} text-white font-bold rounded-xl text-center text-sm shadow-md transition-colors flex items-center justify-center gap-2`}
+            >
+              <MessageCircle className="w-5 h-5 fill-current" />
+              <span>Reservar este paseo</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

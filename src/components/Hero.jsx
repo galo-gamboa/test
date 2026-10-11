@@ -3,7 +3,7 @@ import { MessageCircle, ShieldCheck, Star, Sparkles, Anchor } from 'lucide-react
 
 // Imagen para la tarjeta destacada
 import heroFloripaCard from '../assets/excursiones/floripa-catamaran.jpg';
-import heroGalinhasCard from '../assets/excursiones/galinhas-maragogi.jpg';
+import heroGalinhasCard from '../assets/excursiones/galinhas-maragogi-1.jpg';
 
 // Imagen de fondo para el Hero (portada)
 import fondoFloripa from '../assets/seleccion-floripa.jpg';
