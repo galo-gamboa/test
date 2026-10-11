@@ -15,7 +15,7 @@ import galinhasSantoAleixo from '../assets/excursiones/galinhas-santo-aleixo.jpg
 import galinhasBuggy from '../assets/excursiones/galinhas-buggy.jpg';
 import galinhasSnorkel from '../assets/excursiones/galinhas-snorkel.jpg';
 
-export default function ToursSection({ sucursal }) {
+export default function ToursSection({ sucursal, onOpenWhatsApp }) {
   const [selectedModalTour, setSelectedModalTour] = useState(null);
   const { colores } = sucursal;
 
@@ -206,12 +206,6 @@ export default function ToursSection({ sucursal }) {
 
   const tours = toursPorSucursal[sucursal.id] || toursPorSucursal.floripa;
 
-  const getWhatsAppTourLink = (tourName) => {
-    const destino = sucursal.id === 'floripa' ? 'Florianópolis' : 'Porto de Galinhas';
-    const text = `¡Hola ${sucursal.nombre}! Quiero consultar por la excursión: ${tourName} en ${destino}. ¿Me brindas más información y disponibilidad?`;
-    return `https://wa.me/${sucursal.whatsapp}?text=${encodeURIComponent(text)}`;
-  };
-
   const textos = {
     floripa: {
       catalogo: 'Catálogo Exclusivo',
@@ -322,15 +316,13 @@ export default function ToursSection({ sucursal }) {
                     <span>Info & Fotos</span>
                   </button>
 
-                  <a
-                    href={getWhatsAppTourLink(tour.title)}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={() => onOpenWhatsApp(tour.title)}
                     className={`flex-1 px-4 py-3 ${colores.bgSecundario} ${colores.bgSecundarioHover} text-white font-bold rounded-xl text-xs sm:text-sm transition-colors shadow-sm flex items-center justify-center gap-1.5`}
                   >
                     <MessageCircle className="w-4 h-4 fill-current" />
                     <span>Consultar</span>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -344,15 +336,13 @@ export default function ToursSection({ sucursal }) {
               <p className="text-white/90 text-sm leading-relaxed">
                 {t.bannerTexto}
               </p>
-              <a
-                href={`https://wa.me/${sucursal.whatsapp}?text=${encodeURIComponent(`¡Hola ${sucursal.nombre}! 👋 Quiero consultar por otros paseos que no vi en la web. ¿Me podés pasar opciones y disponibilidad? ¡Gracias!`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => onOpenWhatsApp()}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 font-bold rounded-2xl shadow-lg hover:bg-gray-100 transition-all text-sm mt-2"
               >
                 <MessageCircle className={`w-4 h-4 ${colores.textSecundario} fill-current`} />
                 <span>{t.bannerBoton}</span>
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -399,15 +389,16 @@ export default function ToursSection({ sucursal }) {
               </div>
 
               <div className="pt-2 flex items-center gap-3">
-                <a
-                  href={getWhatsAppTourLink(selectedModalTour.title)}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => {
+                    setSelectedModalTour(null);
+                    onOpenWhatsApp(selectedModalTour.title);
+                  }}
                   className={`flex-1 py-3.5 ${colores.bgSecundario} ${colores.bgSecundarioHover} text-white font-bold rounded-xl text-center text-sm shadow-md transition-colors flex items-center justify-center gap-2`}
                 >
                   <MessageCircle className="w-5 h-5 fill-current" />
                   <span>Reservar este paseo</span>
-                </a>
+                </button>
               </div>
             </div>
           </div>

@@ -5,19 +5,15 @@ import { MessageCircle, ShieldCheck, Star, Sparkles, Anchor } from 'lucide-react
 import heroFloripa from '../assets/excursiones/floripa-catamaran.jpg';
 import heroGalinhas from '../assets/excursiones/galinhas-maragogi.jpg';
 
-export default function Hero({ sucursal }) {
+export default function Hero({ sucursal, onOpenWhatsApp }) {
   const { colores } = sucursal;
-
-  const whatsappUrl = `https://wa.me/${sucursal.whatsapp}?text=${encodeURIComponent(
-    `¡Hola ${sucursal.nombre}! Quiero consultar por las excursiones en ${sucursal.id === 'floripa' ? 'Florianópolis' : 'Porto de Galinhas'}.`
-  )}`;
 
   const textos = {
     floripa: {
       badge: 'Excursiones en Florianópolis 🇧🇷',
       tituloParte1: 'Descubrí las mejores',
       tituloParte2: 'experiencias de Florianópolis',
-      subtitulo: 'Islas paradisíacas, paseos en barco y catamarán, turismo aventura y parques de diversiones. 🌴🇧🇷 Disfrutá de tus vacaciones con atención personalizada en español.',
+      subtitulo: 'Excursiones seleccionadas, atención en español y reservas rápidas directo por WhatsApp. Disfrutá de playas paradisíacas, paseos en catamarán y buceo con guía personalizado.',
       imagenDestacada: heroFloripa,
       imagenAlt: 'Catamarán navegando en aguas turquesa de Florianópolis',
       etiquetaDestacada: 'Catamarán Porto Madero',
@@ -28,7 +24,7 @@ export default function Hero({ sucursal }) {
       badge: 'Excursiones en Porto de Galinhas 🇧🇷',
       tituloParte1: 'Viví las mejores',
       tituloParte2: 'experiencias de Porto de Galinhas',
-      subtitulo: 'Recorré Porto de Galinhas en buggy, descubrí el paraíso de Maragogi, disfrutá de las playas de Carneiros y Santo Aleixo, buceá en las piscinas naturales y viví muchas aventuras más por el nordeste brasileño. 🌴🌊',
+      subtitulo: 'Paseos únicos por las playas más paradisíacas de Brasil. Atención en español y reservas rápidas por WhatsApp. Descubrí lo mejor del nordeste brasilero.',
       imagenDestacada: heroGalinhas,
       imagenAlt: 'Piscinas naturales de Maragogi',
       etiquetaDestacada: 'Maragogi',
@@ -67,15 +63,13 @@ export default function Hero({ sucursal }) {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => onOpenWhatsApp()}
                 className={`w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 ${colores.bgSecundario} ${colores.bgSecundarioHover} text-white font-bold text-base rounded-2xl shadow-lg transform hover:-translate-y-0.5 transition-all`}
               >
                 <MessageCircle className="w-5 h-5 fill-current" />
                 <span>Consultar por WhatsApp</span>
-              </a>
+              </button>
 
               <a
                 href="#paseos"
