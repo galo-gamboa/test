@@ -15,3 +15,11 @@
 .animate-whatsapp {
   animation: pulse-subtle 3s infinite ease-in-out;
 }
+@keyframes pulse-subtle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s infinite ease-in-out;
+}
