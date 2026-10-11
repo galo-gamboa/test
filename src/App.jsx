@@ -1,4 +1,3 @@
-import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ToursSection from './components/ToursSection';
@@ -8,38 +7,38 @@ import GallerySection from './components/GallerySection';
 import BookingForm from './components/BookingForm';
 import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
+import { getSucursal } from './config/sucursales';
 
-export default function App() {
+export default function App({ sucursalId = 'floripa' }) {
+  const sucursal = getSucursal(sucursalId);
+
   return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-sky-500 selection:text-white">
+    <div className="min-h-screen bg-white text-gray-900 font-sans">
       {/* Top Header Navigation */}
-      <Header />
+      <Header sucursal={sucursal} />
 
       {/* Hero Banner */}
       <main>
-        <Hero />
+        <Hero sucursal={sucursal} />
 
         {/* Featured Tours Catalog */}
-        <ToursSection />
+        <ToursSection sucursal={sucursal} />
 
         {/* Travelers WhatsApp Testimonials */}
-        <Testimonials />
+        <Testimonials sucursal={sucursal} />
 
         {/* Why Choose Us Core Value Props */}
-        <WhyChooseUs />
-
-        {/* Photo Gallery & Instagram Widget */}
-        <GallerySection />
+        <WhyChooseUs sucursal={sucursal} />
 
         {/* Instant WhatsApp Reservation Form */}
-        <BookingForm />
+        <BookingForm sucursal={sucursal} />
       </main>
 
       {/* Footer */}
-      <Footer />
+      <Footer sucursal={sucursal} />
 
       {/* Floating Action WhatsApp Button */}
-      <WhatsAppFloat />
+      <WhatsAppFloat sucursal={sucursal} />
     </div>
   );
 }

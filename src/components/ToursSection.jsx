@@ -1,97 +1,245 @@
 import React, { useState } from 'react';
-import { MessageCircle, Check, Info, Sparkles, MapPin, Eye, Star } from 'lucide-react';
+import { MessageCircle, Check, Info, Sparkles, MapPin } from 'lucide-react';
 
-export default function ToursSection({ onSelectTourForBooking }) {
+export default function ToursSection({ sucursal }) {
   const [selectedModalTour, setSelectedModalTour] = useState(null);
+  const { colores } = sucursal;
 
-  const tours = [
-    {
-      id: "catamaran",
-      title: "Catamarán Porto Madero",
-      badge: "Paseo Principal ⭐",
-      isFeatured: true,
-      image: "https://www.toniturismo.com/__l5e/assets-v1/bbb4cf39-1c09-4444-aabf-3fc27a946088/tour-catamaran-official.jpg",
-      fallbackImage: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80",
-      description: "Navegación inolvidable bordo de un catamarán de primer nivel con paradas en playas e islas paradisíacas. Incluye música, guías y paradas para baño.",
-      duration: "Día completo",
-      highlights: ["Navegación premium", "Atención a bordo", "Fotografías memorables", "Parada para nadar"],
-    },
-    {
-      id: "campeche-desembarque",
-      title: "Isla de Campeche Desembarque",
-      badge: "El más solicitado 🏖️",
-      isFeatured: false,
-      image: "https://www.toniturismo.com/__l5e/assets-v1/c43ef9fd-e544-4910-8b80-7660affd9403/tour-campeche-official.jpg",
-      fallbackImage: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
-      description: "Llegada directa a la joya del Caribe Brasileño. Caminatas guiadas, aguas cristalinas para snorkel y tiempo libre en la isla.",
-      duration: "6 a 7 horas",
-      highlights: ["Desembarque en la playa", "Aguas ultra cristalinas", "Senderos arqueológicos", "Cupos limitados"],
-    },
-    {
-      id: "campeche-panoramico",
-      title: "Isla de Campeche Panorámico",
-      badge: "Vista Espectacular 🌅",
-      isFeatured: false,
-      image: "https://www.toniturismo.com/assets/tour-campeche-premium-DA2J0UFM.jpg",
-      fallbackImage: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80",
-      description: "Recorrido náutico costero rodeando la mística Isla de Campeche con vistas panorámicas únicas de acantilados e islotes.",
-      duration: "4 horas",
-      highlights: ["Recorrido náutico guiado", "Música a bordo", "Fotos desde el agua", "Apto para toda la familia"],
-    },
-    {
-      id: "camboriu-unipraias",
-      title: "Balneário Camboriú + Parque Unipraias",
-      badge: "Ciudad + Naturaleza 🚠",
-      isFeatured: false,
-      image: "https://www.toniturismo.com/assets/tour-camboriu-DjC-Bp-8.jpg",
-      fallbackImage: "https://images.unsplash.com/photo-1476514525535-ce74f45814e0?auto=format&fit=crop&w=800&q=80",
-      description: "Un paseo imperdible hacia la 'Dubai de Brasil'. Incluye paseo costero, teleférico Parque Unipraias y parada en Playa Laranjeiras.",
-      duration: "Excursión Día Entero",
-      highlights: ["Teleférico Unipraias", "Miradores panorámicos", "Tiempo libre de compras", "Traslado con aire acondicionado"],
-    },
-    {
-      id: "buceo-bautismo",
-      title: "Buceo de Bautismo",
-      badge: "Experiencia Única 🥽",
-      isFeatured: false,
-      image: "https://www.toniturismo.com/__l5e/assets-v1/fad5723c-c632-4bc6-bf17-f6855b401347/tour-buceo.jpg",
-      fallbackImage: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
-      description: "Iniciación al mundo submarino sin experiencia previa requerida. Equipamiento completo, instructor personalizado 1 a 1 y peces exóticos.",
-      duration: "3 a 4 horas",
-      highlights: ["Instructor individual", "Equipo técnico completo", "No requiere saber nadar", "Fotografías submarinas"],
-    },
-    {
-      id: "isla-frances",
-      title: "Isla do Francês",
-      badge: "Relax & Naturaleza 🌴",
-      isFeatured: false,
-      image: "https://www.toniturismo.com/assets/tour-frances-xRpBFnq5.jpg",
-      fallbackImage: "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=80",
-      description: "Tranquila escapada en barco hacia una encantadora isla privada al norte de Florianópolis. Aguas mansas ideales para kayak y stand up paddle.",
-      duration: "Media jornada",
-      highlights: ["Aguas muy calmas", "Ambiente familiar", "Snorkel en rocas", "Fácil acceso"],
-    }
-  ];
-
-  const getWhatsAppTourLink = (tourName) => {
-    const text = `¡Hola Toni Turismo! Quiero consultar por la excursión: ${tourName}. ¿Me brindas más información y disponibilidad?`;
-    return `https://wa.me/5548991462022?text=${encodeURIComponent(text)}`;
+  // ============================================
+  // EXCURSIONES POR SUCURSAL
+  // ============================================
+  const toursPorSucursal = {
+    floripa: [
+      {
+        id: 'catamaran',
+        title: 'Paseo en Catamarán',
+        badge: 'Paseo Principal ⭐',
+        isFeatured: true,
+        image: '/src/assets/excursiones/floripa-catamaran.jpg',
+        fallbackImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80',
+        description: 'TODO INCLUIDO. Caipirinha de cortesía, frutas libres, trilha hasta una cascada escondida, almuerzo buffet libre y navegación hasta una playa privada con banana boat, kayak, trampolín, stand up paddle y snorkel.',
+        duration: 'Día completo',
+        highlights: [
+          'Caipirinha de cortesía y frutas libres',
+          'Trilha en la naturaleza hasta cascada escondida',
+          'Almuerzo buffet libre con vista al lago',
+          'Navegación por aguas cristalinas',
+          'Playa privada con actividades incluidas',
+          'Banana boat, kayak, trampolín, SUP y snorkel',
+        ],
+      },
+      {
+        id: 'barco',
+        title: 'Paseo en Barco',
+        badge: 'Clásico Imperdible 🚤',
+        isFeatured: true,
+        image: '/src/assets/excursiones/floripa-barco.jpg',
+        fallbackImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+        description: 'Almuerzo libre, 1 hora de caipirinha FREE, snorkel, animador a bordo, música durante todo el paseo, dos toboganes de 4 metros, kayak, piscina flotante, stand up paddle, flotadores, bar a bordo y Wi-Fi.',
+        duration: '5 horas',
+        highlights: [
+          'Almuerzo libre (comé todo lo que quieras)',
+          '1 hora de caipirinha FREE',
+          'Snorkel y kayak',
+          'Animador a bordo y música todo el paseo',
+          'Dos toboganes de 4 metros',
+          'Piscina flotante y stand up paddle',
+          'Flotadores tipo espagueti',
+          'Servicio de bar a bordo',
+          'Wi-Fi',
+        ],
+      },
+      {
+        id: 'campeche',
+        title: 'Isla de Campeche',
+        badge: 'Paraíso Natural 🏖️',
+        isFeatured: false,
+        image: '/src/assets/excursiones/floripa-campeche.jpg',
+        fallbackImage: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80',
+        description: 'Reserva natural con acceso controlado de 800 visitantes por día. Aguas cristalinas, arena blanca y naturaleza preservada. Caipirinha libre y agua durante la navegación.',
+        duration: 'Día completo',
+        highlights: [
+          'Reserva natural con acceso controlado',
+          'Aguas transparentes y arena blanca',
+          'Caipirinha libre y agua durante la navegación',
+          'Ideal para relajarse y nadar',
+          'Uno de los tesoros naturales de Florianópolis',
+        ],
+      },
+      {
+        id: 'frances',
+        title: 'Isla de Francés Plus',
+        badge: 'Relax & Naturaleza 🌴',
+        isFeatured: false,
+        image: '/src/assets/excursiones/floripa-frances.jpg',
+        fallbackImage: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=80',
+        description: 'Navegá en una goleta cómoda y exclusiva con recorrido panorámico por las playas del norte de Floripa, con parada para nadar en las aguas cristalinas de Isla do Francés.',
+        duration: '6 horas',
+        highlights: [
+          'Choripán gourmet',
+          'Frutas de estación',
+          'Stand Up Paddle',
+          'Flotadores y snorkel',
+          'Música y ambiente relajado',
+          'Goleta exclusiva (máx. 25 personas)',
+        ],
+      },
+      {
+        id: 'pirata',
+        title: 'Barco Pirata',
+        badge: 'Aventura Familiar 🏴‍☠️',
+        isFeatured: false,
+        image: '/src/assets/excursiones/floripa-pirata.jpg',
+        fallbackImage: 'https://images.unsplash.com/photo-1476514525535-ce74f45814e0?auto=format&fit=crop&w=800&q=80',
+        description: 'Navegá por el norte de Florianópolis descubriendo playas paradisíacas, fortalezas históricas y paisajes increíbles. 3 opciones de paseo con diferentes duraciones.',
+        duration: '3 opciones',
+        highlights: [
+          '3 opciones de paseo (diferentes duraciones)',
+          'Vistas de Canasvieiras, Canajurê, Jurerê y Daniela',
+          'Parada para baño frente a Ilha do Francês',
+          'Visita a Fortaleza de Santa Cruz (opciones completas)',
+          'Historia de las fortalezas de la región',
+        ],
+      },
+    ],
+    galinhas: [
+      {
+        id: 'maragogi',
+        title: 'Maragogi',
+        badge: 'Paraíso Caribeño ⭐',
+        isFeatured: true,
+        image: '/src/assets/excursiones/galinhas-maragogi.jpg',
+        fallbackImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+        description: 'Descubrí el famoso "Caribe Brasileño" y sus aguas cristalinas. Paseo en catamarán por las piscinas naturales y el Camino de Moisés.',
+        duration: 'Día completo',
+        highlights: [
+          'Transporte ida y vuelta desde tu hotel',
+          'Paseo en catamarán (2:30 hs aprox.)',
+          'Piscinas naturales y Camino de Moisés',
+          'Day Use en restaurante',
+          'Salida solo en días de marea baja',
+        ],
+      },
+      {
+        id: 'carneiros',
+        title: 'Playa de Carneiros',
+        badge: 'La más bella 🏖️',
+        isFeatured: false,
+        image: '/src/assets/excursiones/galinhas-carneiros.jpg',
+        fallbackImage: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80',
+        description: 'Una de las playas más lindas de Pernambuco, con aguas cristalinas y paisajes increíbles. Paseo en catamarán visitando la Capilla de San Benito, bancos de arena, baño de arcilla y piscinas naturales.',
+        duration: 'Día completo (08 a 15 hs)',
+        highlights: [
+          'Transporte ida y vuelta',
+          'Day Use en Parador Rota dos Carneiros',
+          'Paseo en catamarán (2 hs aprox.)',
+          'Capilla de San Benito',
+          'Bancos de arena y baño de arcilla',
+          'Piscinas naturales',
+        ],
+      },
+      {
+        id: 'santo-aleixo',
+        title: 'Ilha de Santo Aleixo',
+        badge: 'Isla Paradisíaca 🌴',
+        isFeatured: false,
+        image: '/src/assets/excursiones/galinhas-santo-aleixo.jpg',
+        fallbackImage: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80',
+        description: 'Un paraíso de piscinas naturales, playas tranquilas y paisajes de origen volcánico. Travesía en lancha + ruta ecológica guiada.',
+        duration: 'Día completo (08 a 15 hs)',
+        highlights: [
+          'Transporte ida y vuelta',
+          'Travesía en lancha (15 minutos)',
+          'Day Use con sombrilla y reposeras',
+          'Tiempo libre',
+          'Recorrido ecológico con guía local',
+        ],
+      },
+      {
+        id: 'buggy',
+        title: 'Paseo en Buggy',
+        badge: 'Aventura 4x4 🏎️',
+        isFeatured: false,
+        image: '/src/assets/excursiones/galinhas-buggy.jpg',
+        fallbackImage: 'https://images.unsplash.com/photo-1476514525535-ce74f45814e0?auto=format&fit=crop&w=800&q=80',
+        description: 'Recorré Porto de Galinhas de punta a punta: Muro Alto, Cupé, Porto de Galinhas, Maracaípe y Pontal de Maracaípe.',
+        duration: '2, 4, 6 u 8 horas',
+        highlights: [
+          'Muro Alto',
+          'Cupé',
+          'Porto de Galinhas',
+          'Maracaípe',
+          'Pontal de Maracaípe',
+          'Paradas en playas paradisíacas y lugares para fotos',
+          'Capacidad hasta 4 personas',
+        ],
+      },
+      {
+        id: 'snorkel',
+        title: 'Buceo o Snorkel en las Piscinas Naturales',
+        badge: 'Mundo Submarino 🐠',
+        isFeatured: false,
+        image: '/src/assets/excursiones/galinhas-snorkel.jpg',
+        fallbackImage: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80',
+        description: 'Viví una experiencia única dentro de las aguas cristalinas de Porto de Galinhas. Paseo en jangada hasta las piscinas naturales + snorkel entre peces.',
+        duration: '50 minutos',
+        highlights: [
+          'Paseo en jangada hasta las piscinas naturales',
+          'Experiencia de snorkel entre peces',
+          'Aguas transparentes',
+          'Fotos subacuáticas incluidas',
+        ],
+      },
+    ],
   };
+
+  const tours = toursPorSucursal[sucursal.id] || toursPorSucursal.floripa;
+
+  // Mensaje de WhatsApp dinámico
+  const getWhatsAppTourLink = (tourName) => {
+    const destino = sucursal.id === 'floripa' ? 'Florianópolis' : 'Porto de Galinhas';
+    const text = `¡Hola ${sucursal.nombre}! Quiero consultar por la excursión: ${tourName} en ${destino}. ¿Me brindas más información y disponibilidad?`;
+    return `https://wa.me/${sucursal.whatsapp}?text=${encodeURIComponent(text)}`;
+  };
+
+  // Textos según sucursal
+  const textos = {
+    floripa: {
+      catalogo: 'Catálogo Exclusivo',
+      titulo: 'Excursiones seleccionadas para vivir lo mejor de la isla',
+      subtitulo: 'Garantizamos la máxima seguridad, atención 100% en español y los mejores itinerarios costeros de Florianópolis.',
+      ubicacion: 'Florianópolis & Alrededores',
+      bannerTitulo: '¿Buscás otra excursión personalizada?',
+      bannerTexto: 'Contamos con más paseos en barco, traslados privados y actividades acuáticas según tus necesidades.',
+      bannerBoton: 'Consultar por otros paseos',
+    },
+    galinhas: {
+      catalogo: 'Catálogo Exclusivo',
+      titulo: 'Paseos únicos para vivir lo mejor de Porto de Galinhas',
+      subtitulo: 'Atención 100% en español, guías locales y las mejores experiencias del nordeste brasileño.',
+      ubicacion: 'Porto de Galinhas & Alrededores',
+      bannerTitulo: '¿Buscás otra experiencia personalizada?',
+      bannerTexto: 'Contamos con más paseos, traslados privados y actividades acuáticas según tus necesidades.',
+      bannerBoton: 'Consultar por otros paseos',
+    },
+  };
+
+  const t = textos[sucursal.id] || textos.floripa;
 
   return (
     <section id="paseos" className="py-20 bg-gray-50/80 relative scroll-mt-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <span className="text-sky-600 font-bold text-sm tracking-wider uppercase bg-sky-100/80 px-4 py-1.5 rounded-full">
-            Catálogo Exclusivo
+          <span className={`${colores.textPrimario} font-bold text-sm tracking-wider uppercase ${colores.bgSuave} px-4 py-1.5 rounded-full`}>
+            {t.catalogo}
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight">
-            Excursiones seleccionadas para vivir lo mejor de la isla
+            {t.titulo}
           </h2>
           <p className="text-gray-600 text-base sm:text-lg">
-            Garantizamos la máxima seguridad, atención 100% en español y los mejores itinerarios costeros de Florianópolis.
+            {t.subtitulo}
           </p>
         </div>
 
@@ -101,7 +249,7 @@ export default function ToursSection({ onSelectTourForBooking }) {
             <div
               key={tour.id}
               className={`bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col border ${
-                tour.isFeatured ? 'border-sky-400 ring-2 ring-sky-400/20' : 'border-gray-200/80'
+                tour.isFeatured ? `${colores.borderPrimario} ring-2 ${colores.borderPrimario}/20` : 'border-gray-200/80'
               }`}
             >
               {/* Tour Image Header */}
@@ -114,14 +262,14 @@ export default function ToursSection({ onSelectTourForBooking }) {
                     e.target.src = tour.fallbackImage;
                   }}
                 />
-                
+
                 {/* Overlay Badge */}
                 <div className="absolute top-4 left-4 bg-gray-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
                   {tour.badge}
                 </div>
 
                 {tour.isFeatured && (
-                  <div className="absolute top-4 right-4 bg-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1">
+                  <div className={`absolute top-4 right-4 ${colores.bgSecundario} text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1`}>
                     <Sparkles className="w-3.5 h-3.5" />
                     Destacado
                   </div>
@@ -131,14 +279,14 @@ export default function ToursSection({ onSelectTourForBooking }) {
               {/* Card Body */}
               <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div>
-                  <div className="flex items-center gap-2 text-xs text-sky-600 font-semibold mb-2">
+                  <div className={`flex items-center gap-2 text-xs ${colores.textPrimario} font-semibold mb-2`}>
                     <MapPin className="w-3.5 h-3.5" />
-                    <span>Florianópolis & Alrededores</span>
+                    <span>{t.ubicacion}</span>
                     <span className="text-gray-300">•</span>
                     <span>{tour.duration}</span>
                   </div>
 
-                  <h3 className="text-xl font-black text-gray-900 leading-snug hover:text-sky-600 transition-colors">
+                  <h3 className="text-xl font-black text-gray-900 leading-snug hover:text-gray-700 transition-colors">
                     {tour.title}
                   </h3>
 
@@ -146,14 +294,19 @@ export default function ToursSection({ onSelectTourForBooking }) {
                     {tour.description}
                   </p>
 
-                  {/* Highlights checklist */}
+                  {/* Highlights checklist (preview - solo los primeros 3) */}
                   <div className="mt-4 pt-4 border-t border-gray-100 space-y-2">
-                    {tour.highlights.map((highlight, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-xs text-gray-700 font-medium">
-                        <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                    {tour.highlights.slice(0, 3).map((highlight, idx) => (
+                      <div key={idx} className="flex items-start gap-2 text-xs text-gray-700 font-medium">
+                        <Check className={`w-4 h-4 ${colores.textSecundario} shrink-0 mt-0.5`} />
                         <span>{highlight}</span>
                       </div>
                     ))}
+                    {tour.highlights.length > 3 && (
+                      <p className={`text-xs ${colores.textPrimario} font-bold pt-1`}>
+                        +{tour.highlights.length - 3} beneficios más...
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -161,7 +314,7 @@ export default function ToursSection({ onSelectTourForBooking }) {
                 <div className="pt-2 flex items-center gap-2">
                   <button
                     onClick={() => setSelectedModalTour(tour)}
-                    className="flex-1 px-4 py-3 bg-sky-50 hover:bg-sky-100 text-sky-800 font-bold rounded-xl text-xs sm:text-sm transition-colors flex items-center justify-center gap-1.5"
+                    className={`flex-1 px-4 py-3 ${colores.bgSuave} ${colores.textPrimarioOscuro} font-bold rounded-xl text-xs sm:text-sm transition-colors flex items-center justify-center gap-1.5`}
                   >
                     <Info className="w-4 h-4" />
                     <span>Info & Fotos</span>
@@ -171,35 +324,36 @@ export default function ToursSection({ onSelectTourForBooking }) {
                     href={getWhatsAppTourLink(tour.title)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 px-4 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl text-xs sm:text-sm transition-colors shadow-sm flex items-center justify-center gap-1.5"
+                    className={`flex-1 px-4 py-3 ${colores.bgSecundario} ${colores.bgSecundarioHover} text-white font-bold rounded-xl text-xs sm:text-sm transition-colors shadow-sm flex items-center justify-center gap-1.5`}
                   >
                     <MessageCircle className="w-4 h-4 fill-current" />
                     <span>Consultar</span>
                   </a>
                 </div>
-
               </div>
             </div>
           ))}
-        </div>
 
-        {/* Bottom Banner */}
-        <div className="mt-16 bg-gradient-to-r from-sky-600 via-teal-600 to-emerald-600 rounded-3xl p-8 sm:p-12 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="space-y-2 text-center md:text-left">
-            <h3 className="text-2xl sm:text-3xl font-black">¿Buscás otra excursión personalizada?</h3>
-            <p className="text-sky-100 text-sm sm:text-base max-w-xl">
-              Contamos con más paseos en barco, traslados privados y actividades acuáticas según tus necesidades.
-            </p>
+          {/* Banner como 6ª tarjeta de la grilla */}
+          <div className={`bg-gradient-to-br ${colores.gradienteHero} rounded-3xl overflow-hidden shadow-md flex flex-col items-center justify-center p-8 text-white text-center min-h-[400px]`}>
+            <div className="space-y-4">
+              <h3 className="text-2xl font-black leading-tight">
+                {t.bannerTitulo}
+              </h3>
+              <p className="text-white/90 text-sm leading-relaxed">
+                {t.bannerTexto}
+              </p>
+              <a
+                href={`https://wa.me/${sucursal.whatsapp}?text=${encodeURIComponent(`¡Hola ${sucursal.nombre}! 👋 Quiero consultar por otros paseos que no vi en la web. ¿Me podés pasar opciones y disponibilidad? ¡Gracias!`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 font-bold rounded-2xl shadow-lg hover:bg-gray-100 transition-all text-sm mt-2"
+              >
+                <MessageCircle className={`w-4 h-4 ${colores.textSecundario} fill-current`} />
+                <span>{t.bannerBoton}</span>
+              </a>
+            </div>
           </div>
-          <a
-            href="https://wa.me/5548991462022?text=%C2%A1Hola%20Toni%20Turismo!%20%F0%9F%91%8B%20Quiero%20consultar%20por%20otros%20paseos%20que%20no%20vi%20en%20la%20web.%20%C2%BFMe%20pod%C3%A9s%20pasar%20opciones%20y%20disponibilidad%3F%20%C2%A1Gracias!"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 px-8 py-4 bg-white text-gray-900 font-bold rounded-2xl shadow-lg hover:bg-gray-100 transition-all flex items-center gap-2 text-sm sm:text-base"
-          >
-            <MessageCircle className="w-5 h-5 text-emerald-500 fill-current" />
-            <span>Consultar por otros paseos</span>
-          </a>
         </div>
 
       </div>
@@ -207,8 +361,8 @@ export default function ToursSection({ onSelectTourForBooking }) {
       {/* Tour Detail Modal */}
       {selectedModalTour && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative border border-gray-100">
-            <div className="relative h-64">
+          <div className="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative border border-gray-100 max-h-[90vh] flex flex-col">
+            <div className="relative h-64 shrink-0">
               <img
                 src={selectedModalTour.image}
                 alt={selectedModalTour.title}
@@ -228,16 +382,16 @@ export default function ToursSection({ onSelectTourForBooking }) {
               </div>
             </div>
 
-            <div className="p-6 space-y-4">
+            <div className="p-6 space-y-4 overflow-y-auto">
               <h3 className="text-2xl font-black text-gray-900">{selectedModalTour.title}</h3>
               <p className="text-gray-600 text-sm leading-relaxed">{selectedModalTour.description}</p>
-              
-              <div className="bg-sky-50 rounded-2xl p-4 space-y-2 border border-sky-100">
-                <p className="text-xs font-bold text-sky-900 uppercase tracking-wide">Incluye en este paseo:</p>
-                <div className="grid grid-cols-1 gap-1.5 text-xs text-sky-800 font-medium">
+
+              <div className={`${colores.bgSuave} rounded-2xl p-4 space-y-2 border ${colores.borderPrimario}/20`}>
+                <p className={`text-xs font-bold ${colores.textPrimarioOscuro} uppercase tracking-wide`}>Incluye en este paseo:</p>
+                <div className="grid grid-cols-1 gap-1.5 text-xs text-gray-700 font-medium">
                   {selectedModalTour.highlights.map((h, i) => (
-                    <div key={i} className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <div key={i} className="flex items-start gap-2">
+                      <Check className={`w-4 h-4 ${colores.textSecundario} shrink-0 mt-0.5`} />
                       <span>{h}</span>
                     </div>
                   ))}
@@ -249,7 +403,7 @@ export default function ToursSection({ onSelectTourForBooking }) {
                   href={getWhatsAppTourLink(selectedModalTour.title)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl text-center text-sm shadow-md transition-colors flex items-center justify-center gap-2"
+                  className={`flex-1 py-3.5 ${colores.bgSecundario} ${colores.bgSecundarioHover} text-white font-bold rounded-xl text-center text-sm shadow-md transition-colors flex items-center justify-center gap-2`}
                 >
                   <MessageCircle className="w-5 h-5 fill-current" />
                   <span>Reservar este paseo</span>
