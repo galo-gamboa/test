@@ -28,7 +28,7 @@ export default function Hero({ sucursal }) {
       badge: 'Excursiones en Porto de Galinhas 🇧🇷',
       tituloParte1: 'Viví las mejores',
       tituloParte2: 'experiencias de Porto de Galinhas',
-      subtitulo: 'Paseos únicos por las playas más paradisíacas de Brasil. Atención en español y reservas rápidas por WhatsApp. Descubrí lo mejor del nordeste brasilero.',
+      subtitulo: 'Recorré Porto de Galinhas en buggy, descubrí el paraíso de Maragogi, disfrutá de las playas de Carneiros y Santo Aleixo, buceá en las piscinas naturales y viví muchas aventuras más por el nordeste brasileño. 🌴🌊',
       imagenDestacada: heroGalinhas,
       imagenAlt: 'Piscinas naturales de Maragogi',
       etiquetaDestacada: 'Maragogi',
