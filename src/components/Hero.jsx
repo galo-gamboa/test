@@ -1,9 +1,13 @@
 import React from 'react';
 import { MessageCircle, ShieldCheck, Star, Sparkles, Anchor } from 'lucide-react';
 
-// Imports de imágenes destacadas
-import heroFloripa from '../assets/excursiones/floripa-catamaran.jpg';
-import heroGalinhas from '../assets/excursiones/galinhas-maragogi.jpg';
+// Imagen para la tarjeta destacada
+import heroFloripaCard from '../assets/excursiones/floripa-catamaran.jpg';
+import heroGalinhasCard from '../assets/excursiones/galinhas-maragogi.jpg';
+
+// Imagen de fondo para el Hero (portada)
+import fondoFloripa from '../assets/seleccion-floripa.jpg';
+import fondoGalinhas from '../assets/seleccion-galinhas.jpg';
 
 export default function Hero({ sucursal, onOpenWhatsApp }) {
   const { colores } = sucursal;
@@ -13,8 +17,9 @@ export default function Hero({ sucursal, onOpenWhatsApp }) {
       badge: 'Excursiones en Florianópolis 🇧🇷',
       tituloParte1: 'Descubrí las mejores',
       tituloParte2: 'experiencias de Florianópolis',
-      subtitulo: 'Excursiones seleccionadas, atención en español y reservas rápidas directo por WhatsApp. Disfrutá de playas paradisíacas, paseos en catamarán y buceo con guía personalizado.',
-      imagenDestacada: heroFloripa,
+      subtitulo: 'Islas paradisíacas, paseos en barco y catamarán, turismo aventura y parques de diversiones. 🌴🇧🇷 Disfrutá de tus vacaciones con atención personalizada en español.',
+      imagenFondo: fondoFloripa,
+      imagenDestacada: heroFloripaCard,
       imagenAlt: 'Catamarán navegando en aguas turquesa de Florianópolis',
       etiquetaDestacada: 'Catamarán Porto Madero',
       tituloImagen: 'Paseo Principal de la Isla',
@@ -25,7 +30,8 @@ export default function Hero({ sucursal, onOpenWhatsApp }) {
       tituloParte1: 'Viví las mejores',
       tituloParte2: 'experiencias de Porto de Galinhas',
       subtitulo: 'Paseos únicos por las playas más paradisíacas de Brasil. Atención en español y reservas rápidas por WhatsApp. Descubrí lo mejor del nordeste brasilero.',
-      imagenDestacada: heroGalinhas,
+      imagenFondo: fondoGalinhas,
+      imagenDestacada: heroGalinhasCard,
       imagenAlt: 'Piscinas naturales de Maragogi',
       etiquetaDestacada: 'Maragogi',
       tituloImagen: 'Paraíso Caribeño en Brasil',
@@ -36,16 +42,29 @@ export default function Hero({ sucursal, onOpenWhatsApp }) {
   const t = textos[sucursal.id] || textos.floripa;
 
   return (
-    <section className={`relative overflow-hidden bg-gradient-to-b ${colores.gradienteFondo} via-white to-white pt-8 pb-16 md:pt-16 md:pb-24`}>
-      <div className={`absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full ${colores.bgSuave} opacity-50 blur-3xl pointer-events-none`}></div>
-      <div className={`absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 rounded-full ${colores.bgSuaveSecundario} opacity-40 blur-3xl pointer-events-none`}></div>
+    <section className="relative overflow-hidden pt-8 pb-16 md:pt-16 md:pb-24">
+
+      {/* Imagen de fondo del Hero */}
+      <img
+        src={t.imagenFondo}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+
+      {/* Overlay blanco/claro para que el texto se lea */}
+      <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/60 to-white/40"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/30"></div>
+
+      {/* Orbes decorativos */}
+      <div className={`absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full ${colores.bgSuave} opacity-30 blur-3xl pointer-events-none`}></div>
+      <div className={`absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 rounded-full ${colores.bgSuaveSecundario} opacity-30 blur-3xl pointer-events-none`}></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
 
-            <div className={`inline-flex items-center gap-2 px-4 py-2 ${colores.bgSuaveSecundario} border ${colores.borderPrimario}/30 ${colores.textPrimarioOscuro} rounded-full text-xs sm:text-sm font-semibold shadow-sm`}>
+            <div className={`inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-md border ${colores.borderPrimario}/30 ${colores.textPrimarioOscuro} rounded-full text-xs sm:text-sm font-semibold shadow-sm`}>
               <span className={`flex h-2 w-2 rounded-full ${colores.bgSecundario} animate-ping`}></span>
               {t.badge}
               <span className="hidden sm:inline font-normal opacity-80">| Atención 100% en Español</span>
@@ -58,7 +77,7 @@ export default function Hero({ sucursal, onOpenWhatsApp }) {
               </span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
               {t.subtitulo}
             </p>
 
@@ -73,13 +92,13 @@ export default function Hero({ sucursal, onOpenWhatsApp }) {
 
               <a
                 href="#paseos"
-                className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-gray-50 ${colores.textPrimarioOscuro} border-2 ${colores.borderPrimario}/20 font-bold text-base rounded-2xl shadow-sm hover:border-current transition-all`}
+                className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/80 backdrop-blur-md hover:bg-white ${colores.textPrimarioOscuro} border-2 ${colores.borderPrimario}/20 font-bold text-base rounded-2xl shadow-sm hover:border-current transition-all`}
               >
                 <span>Ver paseos</span>
               </a>
             </div>
 
-            <div className={`pt-6 border-t ${colores.borderPrimario}/20 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 text-center sm:text-left`}>
+            <div className={`pt-6 border-t ${colores.borderPrimario}/30 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 text-center sm:text-left`}>
               <div className="flex flex-col items-center sm:items-start">
                 <div className="flex items-center text-amber-400 gap-0.5 mb-1">
                   {[...Array(5)].map((_, i) => (
@@ -87,7 +106,7 @@ export default function Hero({ sucursal, onOpenWhatsApp }) {
                   ))}
                 </div>
                 <span className="text-xs font-bold text-gray-800">100% Recomendado</span>
-                <span className="text-[11px] text-gray-500">Por viajeros latinos</span>
+                <span className="text-[11px] text-gray-600">Por viajeros latinos</span>
               </div>
 
               <div className="flex flex-col items-center sm:items-start">
@@ -95,7 +114,7 @@ export default function Hero({ sucursal, onOpenWhatsApp }) {
                   <ShieldCheck className="w-4 h-4" />
                   <span className="text-xs font-bold text-gray-800">Atención Directa</span>
                 </div>
-                <span className="text-[11px] text-gray-500">En tu idioma original</span>
+                <span className="text-[11px] text-gray-600">En tu idioma original</span>
               </div>
 
               <div className="flex flex-col items-center sm:items-start">
@@ -103,7 +122,7 @@ export default function Hero({ sucursal, onOpenWhatsApp }) {
                   <Sparkles className="w-4 h-4" />
                   <span className="text-xs font-bold text-gray-800">Check-in Rápido</span>
                 </div>
-                <span className="text-[11px] text-gray-500">Sin filas ni trámites</span>
+                <span className="text-[11px] text-gray-600">Sin filas ni trámites</span>
               </div>
             </div>
 
