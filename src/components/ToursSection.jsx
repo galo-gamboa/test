@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 import { MessageCircle, Check, Info, Sparkles, MapPin } from 'lucide-react';
 
+// Imports de imágenes - Floripa
+import floripaCatamaran from '../assets/excursiones/floripa-catamaran.jpg';
+import floripaBarco from '../assets/excursiones/floripa-barco.jpg';
+import floripaCampeche from '../assets/excursiones/floripa-campeche.jpg';
+import floripaFrances from '../assets/excursiones/floripa-frances.jpg';
+import floripaPirata from '../assets/excursiones/floripa-pirata.jpg';
+
+// Imports de imágenes - Galinhas
+import galinhasMaragogi from '../assets/excursiones/galinhas-maragogi.jpg';
+import galinhasCarneiros from '../assets/excursiones/galinhas-carneiros.jpg';
+import galinhasSantoAleixo from '../assets/excursiones/galinhas-santo-aleixo.jpg';
+import galinhasBuggy from '../assets/excursiones/galinhas-buggy.jpg';
+import galinhasSnorkel from '../assets/excursiones/galinhas-snorkel.jpg';
+
 export default function ToursSection({ sucursal }) {
   const [selectedModalTour, setSelectedModalTour] = useState(null);
   const { colores } = sucursal;
 
-  // ============================================
-  // EXCURSIONES POR SUCURSAL
-  // ============================================
   const toursPorSucursal = {
     floripa: [
       {
@@ -15,7 +26,7 @@ export default function ToursSection({ sucursal }) {
         title: 'Paseo en Catamarán',
         badge: 'Paseo Principal ⭐',
         isFeatured: true,
-        image: '/src/assets/excursiones/floripa-catamaran.jpg',
+        image: floripaCatamaran,
         fallbackImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80',
         description: 'TODO INCLUIDO. Caipirinha de cortesía, frutas libres, trilha hasta una cascada escondida, almuerzo buffet libre y navegación hasta una playa privada con banana boat, kayak, trampolín, stand up paddle y snorkel.',
         duration: 'Día completo',
@@ -33,7 +44,7 @@ export default function ToursSection({ sucursal }) {
         title: 'Paseo en Barco',
         badge: 'Clásico Imperdible 🚤',
         isFeatured: true,
-        image: '/src/assets/excursiones/floripa-barco.jpg',
+        image: floripaBarco,
         fallbackImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
         description: 'Almuerzo libre, 1 hora de caipirinha FREE, snorkel, animador a bordo, música durante todo el paseo, dos toboganes de 4 metros, kayak, piscina flotante, stand up paddle, flotadores, bar a bordo y Wi-Fi.',
         duration: '5 horas',
@@ -54,7 +65,7 @@ export default function ToursSection({ sucursal }) {
         title: 'Isla de Campeche',
         badge: 'Paraíso Natural 🏖️',
         isFeatured: false,
-        image: '/src/assets/excursiones/floripa-campeche.jpg',
+        image: floripaCampeche,
         fallbackImage: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80',
         description: 'Reserva natural con acceso controlado de 800 visitantes por día. Aguas cristalinas, arena blanca y naturaleza preservada. Caipirinha libre y agua durante la navegación.',
         duration: 'Día completo',
@@ -71,7 +82,7 @@ export default function ToursSection({ sucursal }) {
         title: 'Isla de Francés Plus',
         badge: 'Relax & Naturaleza 🌴',
         isFeatured: false,
-        image: '/src/assets/excursiones/floripa-frances.jpg',
+        image: floripaFrances,
         fallbackImage: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=80',
         description: 'Navegá en una goleta cómoda y exclusiva con recorrido panorámico por las playas del norte de Floripa, con parada para nadar en las aguas cristalinas de Isla do Francés.',
         duration: '6 horas',
@@ -89,7 +100,7 @@ export default function ToursSection({ sucursal }) {
         title: 'Barco Pirata',
         badge: 'Aventura Familiar 🏴‍☠️',
         isFeatured: false,
-        image: '/src/assets/excursiones/floripa-pirata.jpg',
+        image: floripaPirata,
         fallbackImage: 'https://images.unsplash.com/photo-1476514525535-ce74f45814e0?auto=format&fit=crop&w=800&q=80',
         description: 'Navegá por el norte de Florianópolis descubriendo playas paradisíacas, fortalezas históricas y paisajes increíbles. 3 opciones de paseo con diferentes duraciones.',
         duration: '3 opciones',
@@ -108,7 +119,7 @@ export default function ToursSection({ sucursal }) {
         title: 'Maragogi',
         badge: 'Paraíso Caribeño ⭐',
         isFeatured: true,
-        image: '/src/assets/excursiones/galinhas-maragogi.jpg',
+        image: galinhasMaragogi,
         fallbackImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
         description: 'Descubrí el famoso "Caribe Brasileño" y sus aguas cristalinas. Paseo en catamarán por las piscinas naturales y el Camino de Moisés.',
         duration: 'Día completo',
@@ -125,7 +136,7 @@ export default function ToursSection({ sucursal }) {
         title: 'Playa de Carneiros',
         badge: 'La más bella 🏖️',
         isFeatured: false,
-        image: '/src/assets/excursiones/galinhas-carneiros.jpg',
+        image: galinhasCarneiros,
         fallbackImage: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80',
         description: 'Una de las playas más lindas de Pernambuco, con aguas cristalinas y paisajes increíbles. Paseo en catamarán visitando la Capilla de San Benito, bancos de arena, baño de arcilla y piscinas naturales.',
         duration: 'Día completo (08 a 15 hs)',
@@ -143,7 +154,7 @@ export default function ToursSection({ sucursal }) {
         title: 'Ilha de Santo Aleixo',
         badge: 'Isla Paradisíaca 🌴',
         isFeatured: false,
-        image: '/src/assets/excursiones/galinhas-santo-aleixo.jpg',
+        image: galinhasSantoAleixo,
         fallbackImage: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80',
         description: 'Un paraíso de piscinas naturales, playas tranquilas y paisajes de origen volcánico. Travesía en lancha + ruta ecológica guiada.',
         duration: 'Día completo (08 a 15 hs)',
@@ -160,7 +171,7 @@ export default function ToursSection({ sucursal }) {
         title: 'Paseo en Buggy',
         badge: 'Aventura 4x4 🏎️',
         isFeatured: false,
-        image: '/src/assets/excursiones/galinhas-buggy.jpg',
+        image: galinhasBuggy,
         fallbackImage: 'https://images.unsplash.com/photo-1476514525535-ce74f45814e0?auto=format&fit=crop&w=800&q=80',
         description: 'Recorré Porto de Galinhas de punta a punta: Muro Alto, Cupé, Porto de Galinhas, Maracaípe y Pontal de Maracaípe.',
         duration: '2, 4, 6 u 8 horas',
@@ -179,7 +190,7 @@ export default function ToursSection({ sucursal }) {
         title: 'Buceo o Snorkel en las Piscinas Naturales',
         badge: 'Mundo Submarino 🐠',
         isFeatured: false,
-        image: '/src/assets/excursiones/galinhas-snorkel.jpg',
+        image: galinhasSnorkel,
         fallbackImage: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80',
         description: 'Viví una experiencia única dentro de las aguas cristalinas de Porto de Galinhas. Paseo en jangada hasta las piscinas naturales + snorkel entre peces.',
         duration: '50 minutos',
@@ -195,14 +206,12 @@ export default function ToursSection({ sucursal }) {
 
   const tours = toursPorSucursal[sucursal.id] || toursPorSucursal.floripa;
 
-  // Mensaje de WhatsApp dinámico
   const getWhatsAppTourLink = (tourName) => {
     const destino = sucursal.id === 'floripa' ? 'Florianópolis' : 'Porto de Galinhas';
     const text = `¡Hola ${sucursal.nombre}! Quiero consultar por la excursión: ${tourName} en ${destino}. ¿Me brindas más información y disponibilidad?`;
     return `https://wa.me/${sucursal.whatsapp}?text=${encodeURIComponent(text)}`;
   };
 
-  // Textos según sucursal
   const textos = {
     floripa: {
       catalogo: 'Catálogo Exclusivo',
@@ -230,7 +239,6 @@ export default function ToursSection({ sucursal }) {
     <section id="paseos" className="py-20 bg-gray-50/80 relative scroll-mt-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <span className={`${colores.textPrimario} font-bold text-sm tracking-wider uppercase ${colores.bgSuave} px-4 py-1.5 rounded-full`}>
             {t.catalogo}
@@ -243,7 +251,6 @@ export default function ToursSection({ sucursal }) {
           </p>
         </div>
 
-        {/* Tours Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {tours.map((tour) => (
             <div
@@ -252,7 +259,6 @@ export default function ToursSection({ sucursal }) {
                 tour.isFeatured ? `${colores.borderPrimario} ring-2 ${colores.borderPrimario}/20` : 'border-gray-200/80'
               }`}
             >
-              {/* Tour Image Header */}
               <div className="relative h-60 overflow-hidden bg-gray-100 group">
                 <img
                   src={tour.image}
@@ -263,7 +269,6 @@ export default function ToursSection({ sucursal }) {
                   }}
                 />
 
-                {/* Overlay Badge */}
                 <div className="absolute top-4 left-4 bg-gray-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
                   {tour.badge}
                 </div>
@@ -276,7 +281,6 @@ export default function ToursSection({ sucursal }) {
                 )}
               </div>
 
-              {/* Card Body */}
               <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div>
                   <div className={`flex items-center gap-2 text-xs ${colores.textPrimario} font-semibold mb-2`}>
@@ -294,7 +298,6 @@ export default function ToursSection({ sucursal }) {
                     {tour.description}
                   </p>
 
-                  {/* Highlights checklist (preview - solo los primeros 3) */}
                   <div className="mt-4 pt-4 border-t border-gray-100 space-y-2">
                     {tour.highlights.slice(0, 3).map((highlight, idx) => (
                       <div key={idx} className="flex items-start gap-2 text-xs text-gray-700 font-medium">
@@ -310,7 +313,6 @@ export default function ToursSection({ sucursal }) {
                   </div>
                 </div>
 
-                {/* Actions */}
                 <div className="pt-2 flex items-center gap-2">
                   <button
                     onClick={() => setSelectedModalTour(tour)}
@@ -334,7 +336,6 @@ export default function ToursSection({ sucursal }) {
             </div>
           ))}
 
-          {/* Banner como 6ª tarjeta de la grilla */}
           <div className={`bg-gradient-to-br ${colores.gradienteHero} rounded-3xl overflow-hidden shadow-md flex flex-col items-center justify-center p-8 text-white text-center min-h-[400px]`}>
             <div className="space-y-4">
               <h3 className="text-2xl font-black leading-tight">
@@ -358,7 +359,6 @@ export default function ToursSection({ sucursal }) {
 
       </div>
 
-      {/* Tour Detail Modal */}
       {selectedModalTour && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
           <div className="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative border border-gray-100 max-h-[90vh] flex flex-col">

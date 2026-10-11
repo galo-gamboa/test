@@ -1,22 +1,28 @@
 import React from 'react';
 import { MessageCircle, Compass, Instagram, Heart } from 'lucide-react';
 
+// Imports de logos
+import logoFloripa from '../assets/logo-floripa.png';
+import logoGalinhas from '../assets/logo-galinhas.png';
+
 export default function Footer({ sucursal }) {
   const currentYear = new Date().getFullYear();
   const { colores } = sucursal;
 
-  // Destino según sucursal
+  const logos = {
+    floripa: logoFloripa,
+    galinhas: logoGalinhas,
+  };
+
   const destino = sucursal.id === 'floripa' ? 'Florianópolis' : 'Porto de Galinhas';
   const ubicacion = sucursal.id === 'floripa'
     ? 'Florianópolis, Santa Catarina, Brasil'
     : 'Porto de Galinhas, Pernambuco, Brasil';
 
-  // Descripción según sucursal
   const descripcion = sucursal.id === 'floripa'
     ? 'Excursiones seleccionadas en Florianópolis: Catamarán, Isla de Campeche, Barco Pirata y más. Atención personalizada 100% en español.'
     : 'Experiencias únicas en Porto de Galinhas: Maragogi, Playa de Carneiros, Snorkel y más. Atención personalizada 100% en español.';
 
-  // Lista de excursiones para el footer
   const toursFooter = sucursal.id === 'floripa'
     ? [
         'Paseo en Catamarán',
@@ -33,7 +39,6 @@ export default function Footer({ sucursal }) {
         'Snorkel en Piscinas Naturales',
       ];
 
-  // Formato del número de WhatsApp
   const whatsappFormateado = sucursal.whatsapp.replace(/^(\d{2})(\d{2})(\d{5})(\d{4})$/, '+$1 $2 $3-$4');
 
   return (
@@ -42,12 +47,11 @@ export default function Footer({ sucursal }) {
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
 
-          {/* Brand Info */}
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
               <div className={`w-10 h-10 bg-gradient-to-tr ${colores.gradienteHero} rounded-xl flex items-center justify-center text-white font-black text-lg shadow-md overflow-hidden`}>
                 <img
-                  src={sucursal.logo}
+                  src={logos[sucursal.id]}
                   alt={sucursal.nombre}
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -88,7 +92,6 @@ export default function Footer({ sucursal }) {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div className="md:col-span-3 space-y-3">
             <h4 className="text-sm font-bold text-white uppercase tracking-wider">Nuestros Paseos</h4>
             <ul className="space-y-2 text-sm text-gray-400">
@@ -102,7 +105,6 @@ export default function Footer({ sucursal }) {
             </ul>
           </div>
 
-          {/* Contact Direct */}
           <div className="md:col-span-4 space-y-4">
             <h4 className="text-sm font-bold text-white uppercase tracking-wider">Contacto Directo</h4>
             <div className="bg-gray-900/90 border border-gray-800 rounded-2xl p-5 space-y-3">
@@ -135,7 +137,6 @@ export default function Footer({ sucursal }) {
 
         </div>
 
-        {/* Bottom copyright */}
         <div className="mt-12 pt-8 border-t border-gray-900 text-xs text-gray-500 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p>© {currentYear} {sucursal.nombre}. Todos los derechos reservados.</p>
           <div className="flex items-center gap-1 text-gray-400">

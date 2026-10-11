@@ -2,16 +2,23 @@ import React, { useState } from 'react';
 import { MessageCircle, Menu, X, Compass, Calendar, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+// Imports de logos
+import logoFloripa from '../assets/logo-floripa.png';
+import logoGalinhas from '../assets/logo-galinhas.png';
+
 export default function Header({ sucursal }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { colores } = sucursal;
 
-  // Mensaje de WhatsApp dinámico según la sucursal
+  const logos = {
+    floripa: logoFloripa,
+    galinhas: logoGalinhas,
+  };
+
   const whatsappUrl = `https://wa.me/${sucursal.whatsapp}?text=${encodeURIComponent(
     `¡Hola ${sucursal.nombre}! Quiero consultar por las excursiones en ${sucursal.id === 'floripa' ? 'Florianópolis' : 'Porto de Galinhas'}.`
   )}`;
 
-  // Nombre del destino según sucursal
   const destino = sucursal.id === 'floripa' ? 'Florianópolis 🇧🇷' : 'Porto de Galinhas 🇧🇷';
 
   return (
@@ -19,9 +26,7 @@ export default function Header({ sucursal }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
 
-          {/* Logo + Volver */}
           <div className="flex items-center gap-3">
-            {/* Botón para volver a la selección */}
             <Link
               to="/"
               className={`hidden sm:flex items-center justify-center w-9 h-9 rounded-full ${colores.bgSuave} ${colores.textPrimario} hover:scale-110 transition-transform`}
@@ -33,11 +38,10 @@ export default function Header({ sucursal }) {
             <a href="#" className="flex items-center gap-3 group">
               <div className={`w-12 h-12 bg-gradient-to-tr ${colores.gradienteHero} rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-md transform group-hover:scale-105 transition-transform overflow-hidden`}>
                 <img
-                  src={sucursal.logo}
+                  src={logos[sucursal.id]}
                   alt={sucursal.nombre}
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    // Fallback si el logo no carga
                     e.target.style.display = 'none';
                     e.target.parentElement.innerText = sucursal.id === 'floripa' ? 'EF' : 'EG';
                   }}
@@ -56,7 +60,6 @@ export default function Header({ sucursal }) {
             </a>
           </div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
             <a href="#paseos" className={`hover:${colores.textPrimario} transition-colors flex items-center gap-1.5`}>
               <Compass className={`w-4 h-4 ${colores.textPrimario}`} />
@@ -74,7 +77,6 @@ export default function Header({ sucursal }) {
             </a>
           </nav>
 
-          {/* CTA Button */}
           <div className="hidden md:flex items-center">
             <a
               href={whatsappUrl}
@@ -87,7 +89,6 @@ export default function Header({ sucursal }) {
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors"
@@ -98,10 +99,8 @@ export default function Header({ sucursal }) {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-6 space-y-3 animate-fade-in">
-          {/* Botón para volver */}
           <Link
             to="/"
             onClick={() => setMobileMenuOpen(false)}
