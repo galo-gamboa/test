@@ -135,7 +135,7 @@ export default function ToursSection({ sucursal }) {
         id: 'carneiros',
         title: 'Playa de Carneiros',
         badge: 'La más bella 🏖️',
-        isFeatured: false,
+        isFeatured: true,
         image: galinhasCarneiros,
         fallbackImage: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80',
         description: 'Una de las playas más lindas de Pernambuco, con aguas cristalinas y paisajes increíbles. Paseo en catamarán visitando la Capilla de San Benito, bancos de arena, baño de arcilla y piscinas naturales.',
