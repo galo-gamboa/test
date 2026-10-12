@@ -7,6 +7,10 @@ import { ArrowRight } from 'lucide-react';
 import imgFloripa from '../assets/seleccion-floripa.jpg';
 import imgGalinhas from '../assets/seleccion-galinhas.jpg';
 
+// Logos
+import logoFloripa from '../assets/logo-floripa.png';
+import logoGalinhas from '../assets/logo-galinhas.png';
+
 export default function SeleccionSucursal() {
   const navigate = useNavigate();
   const [hover, setHover] = useState(null);
@@ -14,6 +18,11 @@ export default function SeleccionSucursal() {
   const imagenes = {
     floripa: imgFloripa,
     galinhas: imgGalinhas,
+  };
+
+  const logos = {
+    floripa: logoFloripa,
+    galinhas: logoGalinhas,
   };
 
   const destinos = [
@@ -73,7 +82,7 @@ export default function SeleccionSucursal() {
             {/* Logo */}
             <div className="mb-4 sm:mb-6">
               <img
-                src={sucursales[destino.id].logo}
+                src={logos[destino.id]}
                 alt={destino.nombre}
                 className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-contain drop-shadow-2xl group-hover:scale-110 transition-transform duration-500"
                 onError={(e) => {
@@ -97,7 +106,7 @@ export default function SeleccionSucursal() {
               {destino.descripcion}
             </p>
 
-            {/* Botón "Explorar" con animación en mobile */}
+            {/* Botón "Explorar" */}
             <div className={`inline-flex items-center gap-2 sm:gap-3 bg-white text-gray-900 px-4 py-3 sm:px-6 sm:py-4 rounded-2xl font-bold text-xs sm:text-sm md:text-base shadow-2xl transition-all duration-500 self-start group-hover:gap-5 animate-pulse-subtle`}>
               <span>Explorar experiencias</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
