@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://test-theta-two-89.vercel.app/sitemap.xml
+Sitemap: https://www.experienciabrasil.com/sitemap.xml
