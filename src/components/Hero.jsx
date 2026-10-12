@@ -70,14 +70,14 @@ export default function Hero({ sucursal, onOpenWhatsApp }) {
               <span className="hidden sm:inline font-normal opacity-80">| Atención 100% en Español</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-[1.1]">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-[1.1]  drop-shadow-sm">
               {t.tituloParte1} <br className="hidden sm:inline" />
               <span className={`bg-gradient-to-r ${colores.gradienteHero} bg-clip-text text-transparent`}>
                 {t.tituloParte2}
               </span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed drop-shadow-sm">
               {t.subtitulo}
             </p>
 

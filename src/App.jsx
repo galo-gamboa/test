@@ -8,6 +8,7 @@ import BookingForm from './components/BookingForm';
 import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
 import WhatsAppModal from './components/WhatsAppModal';
+import ScrollToTop from './components/ScrollToTop';
 import { getSucursal } from './config/sucursales';
 
 export default function App({ sucursalId = 'floripa' }) {
@@ -15,7 +16,6 @@ export default function App({ sucursalId = 'floripa' }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [tourSeleccionado, setTourSeleccionado] = useState(null);
 
-  // Función para abrir el modal (puede recibir un nombre de tour opcional)
   const abrirModal = (tourNombre = null) => {
     setTourSeleccionado(tourNombre);
     setModalOpen(true);
@@ -35,8 +35,8 @@ export default function App({ sucursalId = 'floripa' }) {
 
       <Footer sucursal={sucursal} />
       <WhatsAppFloat sucursal={sucursal} onOpenWhatsApp={() => abrirModal()} />
+      <ScrollToTop sucursal={sucursal} />
 
-      {/* Modal de WhatsApp */}
       <WhatsAppModal
         sucursal={sucursal}
         isOpen={modalOpen}
