@@ -3,16 +3,21 @@ import { MessageCircle, Menu, X, Compass, Calendar, ArrowLeft, Instagram } from 
 import { Link } from 'react-router-dom';
 
 // Imports de logos
-import logoFloripa from '../assets/logo-floripa.png';
-import logoGalinhas from '../assets/logo-galinhas.png';
+import logoFloripa from '../assets/logo-floripa.jpg';
+import logoGalinhas from '../assets/logo-galinhas.jpg';
 
-export default function Header({ sucursal }) {
+export default function Header({ sucursal, onOpenWhatsApp }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { colores } = sucursal;
 
   const logos = {
     floripa: logoFloripa,
     galinhas: logoGalinhas,
+  };
+
+  const tiktoks = {
+    floripa: 'https://www.tiktok.com/@experiencia.floripa',
+    galinhas: 'https://www.tiktok.com/@experiencia.floripa',
   };
 
   const whatsappUrl = `https://wa.me/${sucursal.whatsapp}?text=${encodeURIComponent(
@@ -79,24 +84,42 @@ export default function Header({ sucursal }) {
             </a>
           </nav>
 
-          {/* CTA Buttons - Instagram + WhatsApp */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* CTA Buttons - TikTok (icono) + Instagram (icono) + WhatsApp (con texto) */}
+          <div className="hidden md:flex items-center gap-2">
+
+            {/* TikTok - solo icono */}
+            <a
+              href={tiktoks[sucursal.id]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-10 h-10 bg-black hover:bg-gray-900 text-white rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all"
+              aria-label="TikTok"
+              title="TikTok"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+              </svg>
+            </a>
+
+            {/* Instagram - solo icono */}
             <a
               href={sucursal.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white font-semibold rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all text-sm`}
+              className="inline-flex items-center justify-center w-10 h-10 bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all"
               aria-label="Instagram"
+              title="Instagram"
             >
-              <Instagram className="w-4 h-4" />
-              <span>Instagram</span>
+              <Instagram className="w-5 h-5" />
             </a>
 
+            {/* WhatsApp - con texto (protagonista) */}
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 px-5 py-2.5 ${colores.bgSecundario} ${colores.bgSecundarioHover} text-white font-semibold rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all text-sm`}
+              title="WhatsApp"
+              className={`inline-flex items-center gap-2 px-5 py-2.5 ${colores.bgSecundario} ${colores.bgSecundarioHover} text-white font-bold rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all text-sm`}
             >
               <MessageCircle className="w-4 h-4 fill-current" />
               <span>WhatsApp</span>
@@ -155,16 +178,27 @@ export default function Header({ sucursal }) {
             Consultar Disponibilidad
           </a>
 
-          {/* Instagram + WhatsApp mobile */}
+          {/* Redes sociales mobile: TikTok + Instagram (iconos chicos) + WhatsApp (grande) */}
           <div className="flex gap-2 pt-2">
+            <a
+              href={tiktoks[sucursal.id]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-12 h-12 flex items-center justify-center bg-black text-white rounded-xl shadow-md shrink-0"
+              aria-label="TikTok"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+              </svg>
+            </a>
             <a
               href={sucursal.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white font-bold rounded-xl shadow-md text-sm"
+              className="w-12 h-12 flex items-center justify-center bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white rounded-xl shadow-md shrink-0"
+              aria-label="Instagram"
             >
-              <Instagram className="w-4 h-4" />
-              Instagram
+              <Instagram className="w-5 h-5" />
             </a>
             <a
               href={whatsappUrl}

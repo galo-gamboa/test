@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { MessageCircle, Check, Info, Sparkles, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 
-// Imports de imágenes - Floripa (una sola foto por tour)
-import floripaCatamaran from '../assets/excursiones/floripa-catamaran.jpg';
-import floripaBarco from '../assets/excursiones/floripa-barco.jpg';
-import floripaCampeche from '../assets/excursiones/floripa-campeche.jpg';
-import floripaFrances from '../assets/excursiones/floripa-frances.jpg';
-import floripaPirata from '../assets/excursiones/floripa-pirata.jpg';
+// Imports de imágenes - Floripa (Catamarán: 2, Barco: 2, Campeche: 1, Francés: 2, Pirata: 1)
+import floripaCatamaran1 from '../assets/excursiones/floripa-catamaran-1.jpg';
+import floripaCatamaran2 from '../assets/excursiones/floripa-catamaran-2.jpg';
+
+import floripaBarco1 from '../assets/excursiones/floripa-barco-1.jpg';
+import floripaBarco2 from '../assets/excursiones/floripa-barco-2.jpg';
+
+import floripaCampeche1 from '../assets/excursiones/floripa-campeche-1.jpg';
+import floripaCampeche2 from '../assets/excursiones/floripa-campeche-2.jpg';
+
+import floripaFrances1 from '../assets/excursiones/floripa-frances-1.jpg';
+import floripaFrances2 from '../assets/excursiones/floripa-frances-2.jpg';
+
+import floripaPirata1 from '../assets/excursiones/floripa-pirata-1.jpg';
 
 // Imports de imágenes - Galinhas (múltiples fotos por tour)
 import galinhasMaragogi1 from '../assets/excursiones/galinhas-maragogi-1.jpg';
@@ -40,7 +48,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
         title: 'Paseo en Catamarán',
         badge: 'Paseo Principal ⭐',
         isFeatured: true,
-        images: [floripaCatamaran],
+        images: [floripaCatamaran1, floripaCatamaran2].filter(Boolean),
         fallbackImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80',
         description: 'TODO INCLUIDO. Caipirinha de cortesía, frutas libres, trilha hasta una cascada escondida, almuerzo buffet libre y navegación hasta una playa privada con banana boat, kayak, trampolín, stand up paddle y snorkel.',
         duration: 'Día completo',
@@ -58,7 +66,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
         title: 'Paseo en Barco',
         badge: 'Clásico Imperdible 🚤',
         isFeatured: true,
-        images: [floripaBarco],
+        images: [floripaBarco1, floripaBarco2].filter(Boolean),
         fallbackImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
         description: 'Almuerzo libre, 1 hora de caipirinha FREE, snorkel, animador a bordo, música durante todo el paseo, dos toboganes de 4 metros, kayak, piscina flotante, stand up paddle, flotadores, bar a bordo y Wi-Fi.',
         duration: '5 horas',
@@ -79,7 +87,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
         title: 'Isla de Campeche',
         badge: 'Paraíso Natural 🏖️',
         isFeatured: false,
-        images: [floripaCampeche],
+        images: [floripaCampeche1, floripaCampeche2].filter(Boolean),
         fallbackImage: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80',
         description: 'Reserva natural con acceso controlado de 800 visitantes por día. Aguas cristalinas, arena blanca y naturaleza preservada. Caipirinha libre y agua durante la navegación.',
         duration: 'Día completo',
@@ -96,7 +104,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
         title: 'Isla de Francés Plus',
         badge: 'Relax & Naturaleza 🌴',
         isFeatured: false,
-        images: [floripaFrances],
+        images: [floripaFrances1, floripaFrances2].filter(Boolean),
         fallbackImage: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=80',
         description: 'Navegá en una goleta cómoda y exclusiva con recorrido panorámico por las playas del norte de Floripa, con parada para nadar en las aguas cristalinas de Isla do Francés.',
         duration: '6 horas',
@@ -114,7 +122,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
         title: 'Barco Pirata',
         badge: 'Aventura Familiar 🏴‍☠️',
         isFeatured: false,
-        images: [floripaPirata],
+        images: [floripaPirata1].filter(Boolean),
         fallbackImage: 'https://images.unsplash.com/photo-1476514525535-ce74f45814e0?auto=format&fit=crop&w=800&q=80',
         description: 'Navegá por el norte de Florianópolis descubriendo playas paradisíacas, fortalezas históricas y paisajes increíbles. 3 opciones de paseo con diferentes duraciones.',
         duration: '3 opciones',
@@ -298,14 +306,13 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
 
       </div>
 
-      {/* Modal de Tour con carrusel manual */}
+      {/* Modal de Tour */}
       {selectedModalTour && (
         <TourModal
           tour={selectedModalTour}
           colores={colores}
           onClose={() => setSelectedModalTour(null)}
           onOpenWhatsApp={onOpenWhatsApp}
-          getWhatsAppTourLink={getWhatsAppTourLink}
         />
       )}
     </section>
@@ -313,7 +320,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
 }
 
 // ============================================
-// COMPONENTE DE TARJETA CON CARRUSEL AUTOMÁTICO + FLECHAS
+// COMPONENTE DE TARJETA CON CARRUSEL
 // ============================================
 function TourCard({ tour, colores, t, onOpenModal, onOpenWhatsApp }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -322,14 +329,11 @@ function TourCard({ tour, colores, t, onOpenModal, onOpenWhatsApp }) {
   const images = tour.images || [];
   const hasMultipleImages = images.length > 1;
 
-  // Cambiar de imagen cada 4 segundos (pausado si hay hover)
   useEffect(() => {
     if (!hasMultipleImages || isPaused) return;
-
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
     }, 4000);
-
     return () => clearInterval(interval);
   }, [hasMultipleImages, isPaused, images.length]);
 
@@ -345,37 +349,31 @@ function TourCard({ tour, colores, t, onOpenModal, onOpenWhatsApp }) {
 
   return (
     <div
-      className={`bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col border ${
-        tour.isFeatured ? `${colores.borderPrimario} ring-2 ${colores.borderPrimario}/20` : 'border-gray-200/80'
-      }`}
+      className={`bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col border ${tour.isFeatured ? `${colores.borderPrimario} ring-2 ${colores.borderPrimario}/20` : 'border-gray-200/80'
+        }`}
     >
-      {/* Carrusel de imágenes */}
       <div
         className="relative h-60 overflow-hidden bg-gray-100 group"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        {/* Imágenes apiladas con fade */}
         {images.map((img, idx) => (
           <img
             key={idx}
             src={img}
             alt={`${tour.title} - Foto ${idx + 1}`}
-            className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${
-              idx === currentIndex ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
-            } group-hover:scale-110`}
+            className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${idx === currentIndex ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
+              } group-hover:scale-110`}
             onError={(e) => {
               e.target.src = tour.fallbackImage;
             }}
           />
         ))}
 
-        {/* Badge superior izquierda */}
         <div className="absolute top-4 left-4 bg-gray-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-10">
           {tour.badge}
         </div>
 
-        {/* Badge destacado */}
         {tour.isFeatured && (
           <div className={`absolute top-4 right-4 ${colores.bgSecundario} text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1 z-10`}>
             <Sparkles className="w-3.5 h-3.5" />
@@ -383,7 +381,6 @@ function TourCard({ tour, colores, t, onOpenModal, onOpenWhatsApp }) {
           </div>
         )}
 
-        {/* Flechas de navegación - solo si hay múltiples imágenes */}
         {hasMultipleImages && (
           <>
             <button
@@ -403,7 +400,6 @@ function TourCard({ tour, colores, t, onOpenModal, onOpenWhatsApp }) {
           </>
         )}
 
-        {/* Indicadores (dots) */}
         {hasMultipleImages && (
           <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-10">
             {images.map((_, idx) => (
@@ -413,11 +409,10 @@ function TourCard({ tour, colores, t, onOpenModal, onOpenWhatsApp }) {
                   e.stopPropagation();
                   setCurrentIndex(idx);
                 }}
-                className={`rounded-full transition-all duration-300 ${
-                  idx === currentIndex
+                className={`rounded-full transition-all duration-300 ${idx === currentIndex
                     ? 'w-6 h-2 bg-white'
                     : 'w-2 h-2 bg-white/50 hover:bg-white/80'
-                }`}
+                  }`}
                 aria-label={`Ir a foto ${idx + 1}`}
               />
             ))}
@@ -425,7 +420,6 @@ function TourCard({ tour, colores, t, onOpenModal, onOpenWhatsApp }) {
         )}
       </div>
 
-      {/* Card Body */}
       <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
         <div>
           <div className={`flex items-center gap-2 text-xs ${colores.textPrimario} font-semibold mb-2`}>
@@ -481,9 +475,9 @@ function TourCard({ tour, colores, t, onOpenModal, onOpenWhatsApp }) {
 }
 
 // ============================================
-// MODAL DE TOUR CON CARRUSEL MANUAL (SIN AUTO-PLAY)
+// MODAL DE TOUR CON CARRUSEL MANUAL
 // ============================================
-function TourModal({ tour, colores, onClose, onOpenWhatsApp, getWhatsAppTourLink }) {
+function TourModal({ tour, colores, onClose, onOpenWhatsApp }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const images = tour.images || [];
@@ -506,23 +500,20 @@ function TourModal({ tour, colores, onClose, onOpenWhatsApp, getWhatsAppTourLink
         className="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative border border-gray-100 max-h-[90vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Carrusel del modal */}
         <div className="relative h-64 shrink-0 group">
           {images.map((img, idx) => (
             <img
               key={idx}
               src={img}
               alt={`${tour.title} - Foto ${idx + 1}`}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-                idx === currentIndex ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${idx === currentIndex ? 'opacity-100' : 'opacity-0'
+                }`}
               onError={(e) => {
                 e.target.src = tour.fallbackImage;
               }}
             />
           ))}
 
-          {/* Botón cerrar */}
           <button
             onClick={onClose}
             className="absolute top-4 right-4 bg-black/60 hover:bg-black text-white w-9 h-9 rounded-full flex items-center justify-center font-bold text-lg z-20"
@@ -531,12 +522,10 @@ function TourModal({ tour, colores, onClose, onOpenWhatsApp, getWhatsAppTourLink
             ✕
           </button>
 
-          {/* Badge */}
           <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-900 z-10">
             {tour.badge}
           </div>
 
-          {/* Flechas de navegación */}
           {hasMultipleImages && (
             <>
               <button
@@ -556,25 +545,22 @@ function TourModal({ tour, colores, onClose, onOpenWhatsApp, getWhatsAppTourLink
             </>
           )}
 
-          {/* Contador de fotos */}
           {hasMultipleImages && (
             <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs font-bold px-2.5 py-1 rounded-full z-10">
               {currentIndex + 1} / {images.length}
             </div>
           )}
 
-          {/* Dots indicadores */}
           {hasMultipleImages && (
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-10">
               {images.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
-                  className={`rounded-full transition-all duration-300 ${
-                    idx === currentIndex
+                  className={`rounded-full transition-all duration-300 ${idx === currentIndex
                       ? 'w-6 h-2 bg-white'
                       : 'w-2 h-2 bg-white/50 hover:bg-white/80'
-                  }`}
+                    }`}
                   aria-label={`Ir a foto ${idx + 1}`}
                 />
               ))}

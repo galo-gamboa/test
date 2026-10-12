@@ -2,7 +2,7 @@ import React from 'react';
 import { MessageCircle, ShieldCheck, Star, Sparkles, Anchor } from 'lucide-react';
 
 // Imagen para la tarjeta destacada
-import heroFloripaCard from '../assets/excursiones/floripa-catamaran.jpg';
+import heroFloripaCard from '../assets/excursiones/floripa-catamaran-1.jpg';
 import heroGalinhasCard from '../assets/excursiones/galinhas-maragogi-1.jpg';
 
 // Imagen de fondo para el Hero (portada)
