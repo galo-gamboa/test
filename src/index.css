@@ -23,3 +23,19 @@
 .animate-pulse-subtle {
   animation: pulse-subtle 3s infinite ease-in-out;
 }
+
+/* Animación para el badge "Destacado" */
+@keyframes pulse-badge {
+  0%, 100% {
+    transform: scale(1);
+    
+  }
+  50% {
+    transform: scale(1.12);
+    
+  }
+}
+
+.animate-pulse-badge {
+  animation: pulse-badge 1.8s infinite ease-in-out;
+}

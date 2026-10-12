@@ -4,9 +4,16 @@ import { MessageCircle, Check, Info, Sparkles, MapPin, ChevronLeft, ChevronRight
 // Imports de imágenes - Floripa (Catamarán: 2, Barco: 2, Campeche: 1, Francés: 2, Pirata: 1)
 import floripaCatamaran1 from '../assets/excursiones/floripa-catamaran-1.jpg';
 import floripaCatamaran2 from '../assets/excursiones/floripa-catamaran-2.jpg';
+import floripaCatamaran3 from '../assets/excursiones/floripa-catamaran-3.jpg';
+import floripaCatamaran4 from '../assets/excursiones/floripa-catamaran-4.jpg';
+import floripaCatamaran5 from '../assets/excursiones/floripa-catamaran-5.jpg';
 
 import floripaBarco1 from '../assets/excursiones/floripa-barco-1.jpg';
 import floripaBarco2 from '../assets/excursiones/floripa-barco-2.jpg';
+import floripaBarco3 from '../assets/excursiones/floripa-barco-3.jpg';
+import floripaBarco4 from '../assets/excursiones/floripa-barco-4.jpg';
+import floripaBarco5 from '../assets/excursiones/floripa-barco-5.jpg';
+import floripaBarco6 from '../assets/excursiones/floripa-barco-6.jpg';
 
 import floripaCampeche1 from '../assets/excursiones/floripa-campeche-1.jpg';
 import floripaCampeche2 from '../assets/excursiones/floripa-campeche-2.jpg';
@@ -48,7 +55,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
         title: 'Paseo en Catamarán',
         badge: 'Paseo Principal ⭐',
         isFeatured: true,
-        images: [floripaCatamaran1, floripaCatamaran2].filter(Boolean),
+        images: [floripaCatamaran1, floripaCatamaran2, floripaCatamaran3, floripaCatamaran4, floripaCatamaran5].filter(Boolean),
         fallbackImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80',
         description: 'TODO INCLUIDO. Caipirinha de cortesía, frutas libres, trilha hasta una cascada escondida, almuerzo buffet libre y navegación hasta una playa privada con banana boat, kayak, trampolín, stand up paddle y snorkel.',
         duration: 'Día completo',
@@ -66,7 +73,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
         title: 'Paseo en Barco',
         badge: 'Clásico Imperdible 🚤',
         isFeatured: true,
-        images: [floripaBarco1, floripaBarco2].filter(Boolean),
+        images: [floripaBarco1, floripaBarco2, floripaBarco3, floripaBarco4, floripaBarco5, floripaBarco6].filter(Boolean),
         fallbackImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
         description: 'Almuerzo libre, 1 hora de caipirinha FREE, snorkel, animador a bordo, música durante todo el paseo, dos toboganes de 4 metros, kayak, piscina flotante, stand up paddle, flotadores, bar a bordo y Wi-Fi.',
         duration: '5 horas',
@@ -375,7 +382,7 @@ function TourCard({ tour, colores, t, onOpenModal, onOpenWhatsApp }) {
         </div>
 
         {tour.isFeatured && (
-          <div className={`absolute top-4 right-4 ${colores.bgSecundario} text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1 z-10`}>
+          <div className={`absolute top-4 right-4 ${colores.bgSecundario} text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1 z-10 animate-pulse-badge`}>
             <Sparkles className="w-3.5 h-3.5" />
             Destacado
           </div>
@@ -410,8 +417,8 @@ function TourCard({ tour, colores, t, onOpenModal, onOpenWhatsApp }) {
                   setCurrentIndex(idx);
                 }}
                 className={`rounded-full transition-all duration-300 ${idx === currentIndex
-                    ? 'w-6 h-2 bg-white'
-                    : 'w-2 h-2 bg-white/50 hover:bg-white/80'
+                  ? 'w-6 h-2 bg-white'
+                  : 'w-2 h-2 bg-white/50 hover:bg-white/80'
                   }`}
                 aria-label={`Ir a foto ${idx + 1}`}
               />
@@ -522,7 +529,8 @@ function TourModal({ tour, colores, onClose, onOpenWhatsApp }) {
             ✕
           </button>
 
-          <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-900 z-10">
+          <div className={`absolute bottom-4 left-4 ${colores.bgSecundario} text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-md flex items-center gap-1 z-10 animate-pulse-badge`}>
+            <Sparkles className="w-3.5 h-3.5" />
             {tour.badge}
           </div>
 
@@ -558,8 +566,8 @@ function TourModal({ tour, colores, onClose, onOpenWhatsApp }) {
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
                   className={`rounded-full transition-all duration-300 ${idx === currentIndex
-                      ? 'w-6 h-2 bg-white'
-                      : 'w-2 h-2 bg-white/50 hover:bg-white/80'
+                    ? 'w-6 h-2 bg-white'
+                    : 'w-2 h-2 bg-white/50 hover:bg-white/80'
                     }`}
                   aria-label={`Ir a foto ${idx + 1}`}
                 />
