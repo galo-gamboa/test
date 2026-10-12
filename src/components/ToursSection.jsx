@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MessageCircle, Check, Info, Sparkles, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 
-// Imports de imágenes - Floripa
+// Imports de imágenes - Floripa (Catamarán: 2, Barco: 2, Campeche: 1, Francés: 2, Pirata: 1)
 import floripaCatamaran1 from '../assets/excursiones/floripa-catamaran-1.jpg';
 import floripaCatamaran2 from '../assets/excursiones/floripa-catamaran-2.jpg';
 import floripaCatamaran3 from '../assets/excursiones/floripa-catamaran-3.jpg';
@@ -23,7 +23,7 @@ import floripaFrances2 from '../assets/excursiones/floripa-frances-2.jpg';
 
 import floripaPirata1 from '../assets/excursiones/floripa-pirata-1.jpg';
 
-// Imports de imágenes - Galinhas
+// Imports de imágenes - Galinhas (múltiples fotos por tour)
 import galinhasMaragogi1 from '../assets/excursiones/galinhas-maragogi-1.jpg';
 import galinhasMaragogi2 from '../assets/excursiones/galinhas-maragogi-2.jpg';
 import galinhasMaragogi3 from '../assets/excursiones/galinhas-maragogi-3.jpg';
@@ -313,6 +313,7 @@ export default function ToursSection({ sucursal, onOpenWhatsApp }) {
 
       </div>
 
+      {/* Modal de Tour */}
       {selectedModalTour && (
         <TourModal
           tour={selectedModalTour}
@@ -368,7 +369,6 @@ function TourCard({ tour, colores, t, onOpenModal, onOpenWhatsApp }) {
             key={idx}
             src={img}
             alt={`${tour.title} - Foto ${idx + 1}`}
-            loading="lazy"
             className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${idx === currentIndex ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
               } group-hover:scale-110`}
             onError={(e) => {
@@ -513,7 +513,6 @@ function TourModal({ tour, colores, onClose, onOpenWhatsApp }) {
               key={idx}
               src={img}
               alt={`${tour.title} - Foto ${idx + 1}`}
-              loading="lazy"
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${idx === currentIndex ? 'opacity-100' : 'opacity-0'
                 }`}
               onError={(e) => {
