@@ -49,14 +49,14 @@ export default function BookingForm({ sucursal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const messageText = `¡Hola ${sucursal.nombre}! 👋
+    const messageText = `¡Hola ${sucursal.nombre}! 
 Quiero consultar disponibilidad para la siguiente reserva en ${destino}:
 
-📌 *Excursión:* ${formData.excursion}
-👤 *Nombre:* ${formData.fullName}
-📱 *WhatsApp:* ${formData.countryCode} ${formData.phone}
-📅 *Fecha Deseada:* ${formData.date || 'A confirmar'}
-👥 *Cantidad de Personas:* ${formData.people}
+*Excursión:* ${formData.excursion}
+*Nombre:* ${formData.fullName}
+*WhatsApp:* ${formData.countryCode} ${formData.phone}
+*Fecha Deseada:* ${formData.date || 'A confirmar'}
+*Cantidad de Personas:* ${formData.people}
 
 ¿Me podrías confirmar disponibilidad y detalles? ¡Muchas gracias!`;
 

@@ -34,17 +34,17 @@ export default function WhatsAppModal({ sucursal, isOpen, onClose, tourNombre = 
 
     // Si hay un tour específico, lo mencionamos
     const mensajeTour = tourNombre
-      ? `📌 *Excursión:* ${tourNombre}\n`
+      ? `*Excursión:* ${tourNombre}\n`
       : '';
 
-    const messageText = `¡Hola, ${sucursal.nombre}! 👋🌴
+    const messageText = `¡Hola, ${sucursal.nombre}!
 
 Quiero consultar por las excursiones disponibles en ${destino}.
 
-${mensajeTour}👥 *Cantidad de personas:* ${personas}
-📅 *Fechas del viaje:* ${fechaFormateada}
+${mensajeTour}*Cantidad de personas:* ${personas}
+*Fechas del viaje:* ${fechaFormateada}
 
-¡Gracias! 😊`;
+¡Gracias!`;
 
     const whatsappUrl = `https://wa.me/${sucursal.whatsapp}?text=${encodeURIComponent(messageText)}`;
     window.open(whatsappUrl, '_blank');
@@ -103,11 +103,10 @@ ${mensajeTour}👥 *Cantidad de personas:* ${personas}
                   key={num}
                   type="button"
                   onClick={() => setPersonas(num.toString())}
-                  className={`px-4 py-2.5 rounded-xl font-bold text-sm transition-all ${
-                    personas === num.toString()
+                  className={`px-4 py-2.5 rounded-xl font-bold text-sm transition-all ${personas === num.toString()
                       ? `${colores.bgSecundario} text-white shadow-md`
                       : `bg-gray-100 text-gray-700 hover:bg-gray-200`
-                  }`}
+                    }`}
                 >
                   {num}
                 </button>
